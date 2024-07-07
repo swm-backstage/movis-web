@@ -1,4 +1,4 @@
-import React, { act } from 'react';
+import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 

@@ -2,7 +2,7 @@ import { styled } from "styled-components";
 import EventLog from "./components/EventLog";
 import MenuItem from "./components/MenuItem";
 import { useEffect, useState } from "react";
-import { getAlert } from "../../sources/alert";
+import { getAlert } from "../../server/alert";
 
 const InfoContainer = styled.div`
     display: flex;
@@ -33,14 +33,15 @@ const NotFoundText = styled.p`
 
 export default function EventInfo(){
     const [eventData, setEventData] = useState({
-        'lists' : [{
-            "name": "로딩중",
-            "contents": "",
-            "cash": 0,
-            "billType": "deposit",
-            "bankNumber": "1234",
-            "bankCode": "090",
-            "createdAt": "2000-01-01T00:00:00"
+        alertList : [{
+            id: 1,
+            name: "로딩중",
+            contents: "",
+            cash: 0,
+            billType: "deposit",
+            bankNumber: "1234",
+            bankCode: "090",
+            createdAt: "2000-01-01T00:00:00"
         }]
     });
 
@@ -69,7 +70,7 @@ export default function EventInfo(){
             {/* 나중에 스크롤 가능한 리스트로 변경해야 함! */}
             <div>
                 {
-                    eventData.lists.map((log, i) => (
+                    eventData.alertList.map((log, i) => (
                         <EventLog e={log} key={i}/>
                     ))
                 }
@@ -77,8 +78,8 @@ export default function EventInfo(){
 
             <Title>기능 바로가기</Title>
             <MenuContainer>
-                {menuItems.map((item) => (
-                    <MenuItem key={item.to} label={item.label} to={item.to} />
+                {menuItems.map((e, i) => (
+                    <MenuItem key={i} label={e.label} to={e.to} />
                 ))}
             </MenuContainer>
             

@@ -8,7 +8,14 @@ import NavigationBar from './components/NavigationBar';
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  height: 100vh;
 `;
+
+const BodyContainer = styled.div`
+  padding: 30px;
+  height: calc(100vh - 216px);
+  overflow-y: hidden;
+`
 
 export default function EventOutlet() {
   const [BodyComponent, setBodyComponent] = useState(<EventMain />);
@@ -16,7 +23,9 @@ export default function EventOutlet() {
   return (
     <Container>
       <Header />
-      <Outlet context={{BodyComponent}}/>
+      <BodyContainer>
+        <Outlet context={{BodyComponent}}/>
+      </BodyContainer>
       <NavigationBar onSelectedBody={setBodyComponent} />
     </Container>
   );

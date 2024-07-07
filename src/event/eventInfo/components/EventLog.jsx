@@ -1,4 +1,7 @@
+import { useState } from "react";
 import { styled } from "styled-components";
+import Modal from "../../../components/Modal";
+import ModalForLog from "./ModalForLog";
 
 const ElementLog = styled.div`
     display: flex;
@@ -43,6 +46,7 @@ const CircleForType = styled.div`
 `
 
 export default function EventLog({e}) {
+    const [showModal, setShowModal] = useState(false);
 
     const colorSet = {
         "deposit" : "#3182F6",
@@ -50,23 +54,31 @@ export default function EventLog({e}) {
     }
 
     return (
-        <ElementLog>
-            <ElementLeft>
-                {
-                    e.billType === "deposit" ? (
-                        <CircleForType $color={colorSet.deposit}>입</CircleForType>
-                    ) : (
-                        <CircleForType $color={colorSet.withdraw}>출</CircleForType>
-                    )
-                }
-                <p>{e.name}</p>
-            </ElementLeft>
-            <ElementRight 
-                $color={e.billType === "deposit" 
-                    ? `${colorSet.deposit}` : `${colorSet.withdraw}`}
-                >
-                {e.cash} 원
-            </ElementRight>
-        </ElementLog>
+        <>
+            <ElementLog onClick={() => setShowModal(true)}>
+                <ElementLeft>
+                    {
+                        e.billType === "deposit" ? (
+                            <CircleForType $color={colorSet.deposit}>입</CircleForType>
+                        ) : (
+                            <CircleForType $color={colorSet.withdraw}>출</CircleForType>
+                        )
+                    }
+                    <p>{e.name}</p>
+                </ElementLeft>
+                <ElementRight 
+                    $color={e.billType === "deposit" 
+                        ? `${colorSet.deposit}` : `${colorSet.withdraw}`}
+                    >
+                    {e.cash} 원
+                </ElementRight>
+            </ElementLog>
+            
+            <ModalForLog
+                logId={e.id}
+                onModal={{enabled: showModal, enable: setShowModal}}
+            />
+            
+        </>
     )
 }

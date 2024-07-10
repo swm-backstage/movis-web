@@ -3,6 +3,8 @@ import EventLog from "./components/EventLog";
 import MenuItem from "./components/MenuItem";
 import { useEffect, useState } from "react";
 import { getAlert } from "../../server/alert";
+import { getBillList } from "../../server/bills";
+import { useParams } from "react-router-dom";
 
 const InfoContainer = styled.div`
     display: flex;
@@ -31,24 +33,27 @@ const NotFoundText = styled.p`
     text-decoration: underline;
 `
 
+const mock = {
+    billList : [{
+        id: 1,
+        name: "로딩중",
+        contents: "",
+        cash: 0,
+        billType: "deposit",
+        bankNumber: "1234",
+        bankCode: "090",
+        createdAt: "2000-01-01T00:00:00"
+    }]
+}
+
 export default function EventInfo(){
-    const [eventData, setEventData] = useState({
-        alertList : [{
-            id: 1,
-            name: "로딩중",
-            contents: "",
-            cash: 0,
-            billType: "deposit",
-            bankNumber: "1234",
-            bankCode: "090",
-            createdAt: "2000-01-01T00:00:00"
-        }]
-    });
+    const [billData, setBillData] = useState(mock);
+    const eventId = useParams().id;
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await getAlert();
-            setEventData(response);
+            const response = await getBillList(eventId);
+            setBillData(response);
         }
         fetchData();
     }, [])
@@ -70,7 +75,7 @@ export default function EventInfo(){
             {/* 나중에 스크롤 가능한 리스트로 변경해야 함! */}
             <div>
                 {
-                    eventData.alertList.map((log, i) => (
+                    billData.billList.map((log, i) => (
                         <EventLog e={log} key={i}/>
                     ))
                 }

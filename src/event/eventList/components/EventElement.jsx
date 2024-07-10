@@ -32,12 +32,12 @@ const CashText = styled.p`
     font-weight: bold;
 `
 
-export default function EventElement({title, cash}){
+export default function EventElement({title, cash, eventId}){
     const navigate = useNavigate();
 
     return(
         <ElementContainer
-            onClick={() => navigate("/events/info")}
+            onClick={() => navigate(`/events/${eventId}`)}
         >
             <HeaderText>{title}</HeaderText>
             <CashContainer>

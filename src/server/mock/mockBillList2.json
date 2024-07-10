@@ -1,0 +1,184 @@
+{
+    "billList": [
+        {
+            "id": 1,
+            "name": "짝수 이벤트",
+            "contents": "내용",
+            "cash": 10000,
+            "billType": "deposit",
+            "accountNumber": "1234",
+            "bankCode": "090",
+            "createdAt": "2024-06-24T16:11:00"
+        },
+        {
+            "id": 2,
+            "name": "백진암",
+            "contents": "백진암",
+            "cash": 0,
+            "billType": "deposit",
+            "accountNumber": "3333",
+            "bankCode": "1234",
+            "createdAt": "2024-06-27T15:03:45"
+        },
+        {
+            "id": 3,
+            "name": "백진암",
+            "contents": "ㅊㅊ",
+            "cash": 0,
+            "billType": "deposit",
+            "accountNumber": "1234",
+            "bankCode": "1234",
+            "createdAt": "2024-06-27T15:03:45"
+        },
+        {
+            "id": 4,
+            "name": "69° in Busan",
+            "contents": "Cloudy · See full forecast",
+            "cash": 0,
+            "billType": "deposit",
+            "accountNumber": "1234",
+            "bankCode": "1234",
+            "createdAt": "2024-06-27T15:03:45"
+        },
+        {
+            "id": 5,
+            "name": "[프로그래머스]",
+            "contents": "2024년 현대모비스 알고리즘 경진대회 예선 참여 안내",
+            "cash": 0,
+            "billType": "deposit",
+            "accountNumber": "1234",
+            "bankCode": "1234",
+            "createdAt": "2024-06-27T15:03:45"
+        },
+        {
+            "id": 6,
+            "name": "SW마에스트로",
+            "contents": "[SW마에스트로] 6월 뉴스레터",
+            "cash": 0,
+            "billType": "deposit",
+            "accountNumber": "1234",
+            "bankCode": "1234",
+            "createdAt": "2024-06-27T15:03:45"
+        },
+        {
+            "id": 7,
+            "name": "76° tomorrow · 4° cooler than today",
+            "contents": "See full forecast for Busan",
+            "cash": 0,
+            "billType": "deposit",
+            "accountNumber": "1234",
+            "bankCode": "1234",
+            "createdAt": "2024-06-27T15:03:45"
+        },
+        {
+            "id": 8,
+            "name": "76° tomorrow · 4° cooler than today",
+            "contents": "See full forecast for Busan",
+            "cash": 0,
+            "billType": "deposit",
+            "accountNumber": "1234",
+            "bankCode": "1234",
+            "createdAt": "2024-06-27T15:03:45"
+        },
+        {
+            "id": 9,
+            "name": "74° tomorrow · 6° cooler than today",
+            "contents": "See full forecast for Busan",
+            "cash": 0,
+            "billType": "deposit",
+            "accountNumber": "1234",
+            "bankCode": "1234",
+            "createdAt": "2024-06-27T15:03:45"
+        },
+        {
+            "id": 10,
+            "name": "76° tomorrow · 4° cooler than today",
+            "contents": "See full forecast for Busan",
+            "cash": 0,
+            "billType": "deposit",
+            "accountNumber": "1234",
+            "bankCode": "1234",
+            "createdAt": "2024-06-27T15:03:45"
+        },
+        {
+            "id": 11,
+            "name": "백진암",
+            "contents": "abc",
+            "cash": 0,
+            "billType": "deposit",
+            "accountNumber": "1234",
+            "bankCode": "1234",
+            "createdAt": "2024-06-27T15:03:45"
+        },
+        {
+            "id": 12,
+            "name": "백진암",
+            "contents": "제목 테스트",
+            "cash": 0,
+            "billType": "deposit",
+            "accountNumber": "1234",
+            "bankCode": "1234",
+            "createdAt": "2024-06-27T15:03:45"
+        },
+        {
+            "id": 13,
+            "name": "백진암",
+            "contents": "aaaa",
+            "cash": 0,
+            "billType": "deposit",
+            "accountNumber": "1234",
+            "bankCode": "1234",
+            "createdAt": "2024-06-27T15:03:45"
+        },
+        {
+            "id": 14,
+            "name": "백진암",
+            "contents": "aaaa",
+            "cash": 0,
+            "billType": "deposit",
+            "accountNumber": "1234",
+            "bankCode": "1234",
+            "createdAt": "2024-06-27T15:03:45"
+        },
+        {
+            "id": 15,
+            "name": "76° in Busan",
+            "contents": "Cloudy · See full forecast",
+            "cash": 0,
+            "billType": "deposit",
+            "accountNumber": "1234",
+            "bankCode": "1234",
+            "createdAt": "2024-06-27T15:03:45"
+        },
+        {
+            "id": 17,
+            "name": "75° in Busan",
+            "contents": "Cloudy · See full forecast",
+            "cash": 0,
+            "billType": "deposit",
+            "accountNumber": "1234",
+            "bankCode": "1234",
+            "createdAt": "2024-06-27T15:03:45"
+        },
+        {
+            "id": 18,
+            "name": "75° in Busan",
+            "contents": "Cloudy · See full forecast",
+            "cash": 0,
+            "billType": "deposit",
+            "accountNumber": "1234",
+            "bankCode": "1234",
+            "createdAt": "2024-06-27T15:03:45"
+        },
+        {
+            "id": 20,
+            "name": "75° in Busan",
+            "contents": "Cloudy · See full forecast",
+            "cash": 0,
+            "billType": "deposit",
+            "accountNumber": "1234",
+            "bankCode": "1234",
+            "createdAt": "2024-06-27T15:03:45"
+        }
+    ]
+}

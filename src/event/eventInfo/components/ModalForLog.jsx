@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import Modal from "../../../components/Modal";
+import { useEffect, useState } from "react";
+import { getBillDetail } from "../../../server/bills";
 
 const ModalContent = styled.div`
     display: flex;
@@ -39,20 +41,27 @@ const ModalTitle = styled.p`
     margin-bottom: 10px;
 `
 
+const mock = {
+    id: 1,
+    name: "로딩중",
+    date: "2000-01-01T00:00",
+    cash: 10000,
+    imageUrl: null,
+    details: "로딩중입니다.",
+};
+
 export default function ModalForLog({ onModal, logId }) {
-    if (!onModal.enabled) return null;
+    const [billData, setBillData] = useState(mock);
 
-    // API 붙여야 함
-    const mock = {
-        id: 1,
-        name: "임시 기록1",
-        date: "2024-06-30T00:00",
-        cash: 10000,
-        imageUrl: null,
-        details: "임시 기록1의 상세 내용입니다.",
-    };
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await getBillDetail(logId);
+            setBillData(response);
+        };
+        fetchData();
+    }, [logId]);
 
-    const formattedDate = new Date(mock.date).toLocaleString('ko-KR', {
+    const formattedDate = new Date(billData.date).toLocaleString('ko-KR', {
         year: 'numeric',
         month: 'long',
         day: 'numeric',
@@ -61,9 +70,11 @@ export default function ModalForLog({ onModal, logId }) {
         hour12: false,
     });
 
+    if (!onModal.enabled) return null;
+
     return (
         <Modal onClose={() => onModal.enable(false)}>
-            <ModalTitle>{mock.name}</ModalTitle>
+            <ModalTitle>{billData.name}</ModalTitle>
             <ModalContent>
                 <TextContainer>
                     <p>날짜</p>
@@ -72,21 +83,21 @@ export default function ModalForLog({ onModal, logId }) {
 
                 <TextContainer>
                     <p>금액</p>
-                    <p>{mock.cash} 원</p>
+                    <p>{billData.cash} 원</p>
                 </TextContainer>
 
                 <TextContainer>
                     <p>영수증</p>
                     <ChangeButton>이미지 변경</ChangeButton>
                 </TextContainer>
-                <ImageArea imageUrl={mock.imageUrl} />
+                <ImageArea imageUrl={billData.imageUrl} />
 
                 <TextContainer>
                     <p>상세</p>
                     <ChangeButton>내용 변경</ChangeButton>
                 </TextContainer>
                 <DetailArea>
-                    {mock.details}
+                    {billData.details}
                 </DetailArea>
 
             </ModalContent>

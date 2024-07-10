@@ -2,6 +2,8 @@ import { useNavigate } from "react-router-dom"
 import { styled } from "styled-components";
 import { IoIosArrowForward } from "react-icons/io";
 import EventElement from "./components/EventElement";
+import { useEffect, useState } from "react";
+import { getEventList } from "../../server/event";
 
 const BodyContainer = styled.div`
     display: flex;
@@ -55,37 +57,24 @@ const HeaderText = styled.h1`
 const DescriptText = styled.p``
 
 export default function EventList(){
-    const navigate = useNavigate();
-
-    const mock = {
+    const [eventList, setEventList] = useState({
         "eventList" : [
             {
                 "id": 1,
-                "title" : "정기 회비",
-                "cash" : 1000000
-            },
-            {
-                "id": 2,
-                "title" : "MT",
-                "cash" : -100000
-            },
-            {
-                "id": 3,
-                "title" : "이벤트1",
+                "title" : "로딩중...",
                 "cash" : 0
-            },
-            {
-                "id": 4,
-                "title" : "이벤트2",
-                "cash" : 20000
-            },
-            {
-                "id": 5,
-                "title" : "이벤트3",
-                "cash" : 300000
             }
         ]
-    };
+    });
+    const navigate = useNavigate();
+    
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await getEventList();
+            setEventList(response);
+        }
+        fetchData();
+    }, [])
 
     return (
         <BodyContainer>
@@ -101,9 +90,10 @@ export default function EventList(){
 
             <ElementContainer>
                 {
-                    mock.eventList.map((e,i) => (
+                    eventList.eventList.map((e,i) => (
                         <EventElement 
                             key={i}
+                            eventId={e.id} 
                             title={e.title}
                             cash={e.cash}
                         />

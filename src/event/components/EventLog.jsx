@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { styled } from "styled-components";
-import Modal from "../../../components/Modal";
-import ModalForLog from "./ModalForLog";
+import Modal from "../../components/Modal";
+import ModalForLog from "../eventInfo/components/ModalForLog";
 
 const ElementLog = styled.div`
     display: flex;
@@ -70,7 +70,7 @@ export default function EventLog({e}) {
                     $color={e.billType === "deposit" 
                         ? `${colorSet.deposit}` : `${colorSet.withdraw}`}
                     >
-                    {e.cash} 원
+                    {e.cash.toLocaleString()} 원
                 </ElementRight>
             </ElementLog>
             

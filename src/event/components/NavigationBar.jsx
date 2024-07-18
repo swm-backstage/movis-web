@@ -26,7 +26,7 @@ const navItems = [
   { label: '메인페이지', 'icon': FaHome, 'component': <EventMain /> },
   { label: '이벤트 관리', 'icon': MdEventNote, 'component': <EventList/> },
   { label: '전체 장부', 'icon': FaBookOpen, 'component': <EventTotal/> },
-  { label: '설정', 'icon': IoMdSettings, 'component': <Settings/> },
+  // { label: '설정', 'icon': IoMdSettings, 'component': <Settings/> },
 ];
 
 export default function NavigationBar({ onSelectedBody }) {

@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import EventLog from "./components/EventLog";
+import EventLog from "../components/EventLog";
 import MenuItem from "./components/MenuItem";
 import { useEffect, useState } from "react";
 import { getAlert } from "../../server/alert";

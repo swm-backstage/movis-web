@@ -9,8 +9,14 @@ import { useParams } from "react-router-dom";
 const InfoContainer = styled.div`
     display: flex;
     flex-direction: column;
-    /* max-width: 400px; */
+    height: 100%;
     gap:15px;
+`
+
+const ScrollContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
 `
 
 const MenuContainer = styled.div`
@@ -60,8 +66,8 @@ export default function EventInfo(){
 
     const menuItems = [
         { label: '이벤트 회비 관리', to: '/events/info' },
-        { label: '이벤트 회원 관리', to: '/events/info' },
-        { label: '총 입출금 관리', to: '/events/info' },
+        { label: '회원 납부 현황', to: '/events/info' },
+        { label: '이벤트 거래내역 엑셀 내보내기', to: '/events/info' },
     ];
 
     
@@ -72,14 +78,13 @@ export default function EventInfo(){
             <EventDescription>이 이벤트에서 발생한 모든 거래내역 입니다.</EventDescription>
             <NotFoundText>내역이 보이지 않나요?</NotFoundText>
 
-            {/* 나중에 스크롤 가능한 리스트로 변경해야 함! */}
-            <div>
+            <ScrollContainer>
                 {
                     billData.billList.map((log, i) => (
                         <EventLog e={log} key={i}/>
                     ))
                 }
-            </div>
+            </ScrollContainer>
 
             <Title>기능 바로가기</Title>
             <MenuContainer>

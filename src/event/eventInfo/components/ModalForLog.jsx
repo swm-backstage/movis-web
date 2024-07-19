@@ -18,7 +18,7 @@ const TextContainer = styled.div`
 const ImageArea = styled.div`
     width: 100%;
     height: 300px;
-    background-image: url(${(props) => props.imageUrl});
+    background-image: url(${(props) => props.$imageurl});
     background-color: lightgray;
 `
 
@@ -90,7 +90,7 @@ export default function ModalForLog({ onModal, logId }) {
                     <p>영수증</p>
                     <ChangeButton>이미지 변경</ChangeButton>
                 </TextContainer>
-                <ImageArea imageUrl={billData.imageUrl} />
+                <ImageArea $imageurl={billData.imageUrl} />
 
                 <TextContainer>
                     <p>상세</p>

@@ -7,12 +7,12 @@ const InfoContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 15px;
+    height: 100%;
 `
 
 const ScrollContainer = styled.div`
     display: flex;
     flex-direction: column;
-    height: 400px;
     overflow-y: scroll;
 `
 

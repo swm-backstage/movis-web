@@ -25,15 +25,14 @@ const StyledNavItem = styled.div`
     }
 `;
 
-const NavItem = ({ now, Icon, active, children }) => {
+const NavItem = ({ now, Icon, active, clubId, children }) => {
     const navigate = useNavigate();
     const location = useLocation();
 
     const handleClick = () => {
         active.setItem(now); 
-        if(location.pathname !== "/events") {
-            // alert(location.pathname);
-            navigate("/events");
+        if(location.pathname !== "/events/" + clubId) {
+            navigate("/events/" + clubId);
         }
     }
 

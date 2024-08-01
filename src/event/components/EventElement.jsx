@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { styled } from "styled-components"
 
 const ElementContainer = styled.div`
@@ -34,10 +34,11 @@ const CashText = styled.p`
 
 export default function EventElement({title, cash, eventId}){
     const navigate = useNavigate();
+    const { clubId } = useParams();
 
     return(
         <ElementContainer
-            onClick={() => navigate(`/events/${eventId}`)}
+            onClick={() => navigate(`/events/${clubId}/${eventId}`)}
         >
             <HeaderText>{title}</HeaderText>
             <CashContainer>

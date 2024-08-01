@@ -2,17 +2,24 @@ import { styled } from "styled-components"
 
 const HeaderContainer = styled.header`
     display: flex;
+    justify-content: start;
+    align-items: center;
 
     height: 35px;
-    padding: 10px;
-    background-color: gray;
+    padding: 15px 2rem;
+
+    font-size: 1.2rem;
+    font-weight: bold;
 `
 
 export default function Header(){
 
     return(
-        <HeaderContainer>
-            SW마에스트로~~~~헤더~~~~
-        </HeaderContainer>
+        <>
+            <HeaderContainer>
+                SW마에스트로
+            </HeaderContainer>
+            <hr style={{width: "calc( 100% - 5px )", margin: "0", padding: "0"}}/>
+        </>
     )
 }

@@ -10,7 +10,7 @@ export default createBrowserRouter([
         element: <LandingPage />
     },
     {
-        path: "events",
+        path: "events/:clubId",
         element: <EventOutlet />,
         children: [
             {

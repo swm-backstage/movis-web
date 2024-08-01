@@ -8,6 +8,7 @@ import EventMain from '../eventMain/EventMain';
 import EventList from '../eventList/EventList';
 import EventTotal from '../eventTotal/EventTotal';
 import Settings from '../Settings';
+import { useParams } from 'react-router-dom';
 
 const NavBar = styled.nav`
   display: flex;
@@ -31,6 +32,7 @@ const navItems = [
 
 export default function NavigationBar({ onSelectedBody }) {
   const [activeItem, setActiveItem] = useState(0);
+  const { clubId } = useParams();
 
   useEffect(() => {
     onSelectedBody(navItems[activeItem].component)
@@ -43,6 +45,7 @@ export default function NavigationBar({ onSelectedBody }) {
           key={index} now={index}
           Icon={item.icon}
           active={{item: activeItem, setItem: setActiveItem}}
+          clubId={clubId}
         >
           {item.label}
         </NavItem>

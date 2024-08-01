@@ -1,7 +1,7 @@
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { styled } from "styled-components";
 import { IoIosArrowForward } from "react-icons/io";
-import EventElement from "./components/EventElement";
+import EventElement from "../components/EventElement";
 import { useEffect, useState } from "react";
 import { getEventList } from "../../server/event";
 

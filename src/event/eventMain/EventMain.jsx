@@ -3,6 +3,7 @@ import RemainedFee from "./components/RemainedFee";
 import EventElement from "../components/EventElement";
 import { useEffect, useState } from "react";
 import { getEventList } from "../../server/event";
+import { useParams } from "react-router-dom";
 
 const MainContainer = styled.div`
     display: flex;
@@ -56,13 +57,13 @@ const mockForClubAlert = [
     {
         id: 1,
         type: "toast",
-        content: "현재 납부하지 않은 회비가 1건 있습니다. \n - MT 비용",
+        content: "[구현 안됨]\n현재 납부하지 않은 회비가 1건 있습니다. \n - MT 비용",
         color: "#FF4E4E"
     },
     {
         id: 2,
         type: "toast",
-        content: "분류되지 않은 입출금 내역이 2건 있습니다.",
+        content: "[구현 안됨]\n분류되지 않은 입출금 내역이 2건 있습니다.",
         color: "#8F94A8"
     }
 ]
@@ -70,14 +71,14 @@ const mockForClubAlert = [
 const mockForRemainedFee = [
     {
         id: 1,
-        title: "MT 회비",
+        title: "구현 안됨, 임시 데이터 - MT 회비",
         duedate: "2024-11-01T00:00",
         amount: 50000,
         state: 0,
     },
     {
         id: 2,
-        title: "임의 회비",
+        title: "구현 안됨, 임시 데이터 - 임의 회비",
         duedate: "2023-11-01T00:00",
         amount: 10000,
         state: 1,
@@ -88,19 +89,20 @@ const mockForRemainedFee = [
 const mock = {
     "eventList" : [
         {
-            "id": 1,
-            "title" : "로딩중...",
-            "cash" : 0
+            "uuid": 1,
+            "name" : "로딩중...",
+            "balance" : 0
         }
     ]
 };
 
 export default function EventMain(){
     const [eventList, setEventList] = useState(mock);
+    const prams = useParams();
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await getEventList();
+            const response = await getEventList(prams.clubId, 3);
             setEventList(response);
         }
         fetchData();
@@ -142,9 +144,9 @@ export default function EventMain(){
                         eventList.eventList.slice(0, 3).map((e, i) => (
                             <EventElement 
                                 key={i}
-                                eventId={e.id} 
-                                title={e.title}
-                                cash={e.cash}
+                                eventId={e.uuid} 
+                                title={e.name}
+                                cash={e.balance}
                             />
                         ))
                     )

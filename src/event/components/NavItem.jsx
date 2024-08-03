@@ -31,8 +31,8 @@ const NavItem = ({ now, Icon, active, clubId, children }) => {
 
     const handleClick = () => {
         active.setItem(now); 
-        if(location.pathname !== "/events/" + clubId) {
-            navigate("/events/" + clubId);
+        if(location.pathname !== "/clubs/" + clubId) {
+            navigate("/clubs/" + clubId);
         }
     }
 

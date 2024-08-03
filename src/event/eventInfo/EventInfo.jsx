@@ -2,7 +2,6 @@ import { styled } from "styled-components";
 import EventLog from "../components/EventLog";
 import MenuItem from "./components/MenuItem";
 import { useEffect, useState } from "react";
-import { getAlert } from "../../server/alert";
 import { getBillList } from "../../server/bills";
 import { useParams } from "react-router-dom";
 
@@ -40,21 +39,21 @@ const NotFoundText = styled.p`
 `
 
 const mock = {
-    billList : [{
-        id: 1,
-        name: "로딩중",
-        contents: "",
-        cash: 0,
-        billType: "deposit",
-        bankNumber: "1234",
-        bankCode: "090",
-        createdAt: "2000-01-01T00:00:00"
-    }]
+    "feeElements": [
+        {
+            "transactionHistoryId": "uuid1",
+            "status": "BILL",
+            "id": "1",
+            "name": "로딩중",
+            "amount": 10000,
+            "paidAt": "2024-06-24T16:11:00"
+        }
+    ]
 }
 
 export default function EventInfo(){
     const [billData, setBillData] = useState(mock);
-    const eventId = useParams().id;
+    const { eventId, clubId } = useParams();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -65,9 +64,9 @@ export default function EventInfo(){
     }, [])
 
     const menuItems = [
-        { label: '이벤트 회비 관리', to: '/events/info' },
-        { label: '회원 납부 현황', to: '/events/info' },
-        { label: '이벤트 거래내역 엑셀 내보내기', to: '/events/info' },
+        { label: '이벤트 회비 관리', to: `settings` },
+        { label: '회원 납부 현황', to: `memberInfo` },
+        { label: '이벤트 거래내역 엑셀 내보내기', to: `excel` },
     ];
 
     
@@ -80,7 +79,7 @@ export default function EventInfo(){
 
             <ScrollContainer>
                 {
-                    billData.billList.map((log, i) => (
+                    billData.feeElements.map((log, i) => (
                         <EventLog e={log} key={i}/>
                     ))
                 }

@@ -60,9 +60,9 @@ export default function EventList(){
     const [eventList, setEventList] = useState({
         "eventList" : [
             {
-                "id": 1,
-                "title" : "로딩중...",
-                "cash" : 0
+                "uuid": 1,
+                "name" : "로딩중...",
+                "balance" : 0
             }
         ]
     });
@@ -93,17 +93,12 @@ export default function EventList(){
                     eventList.eventList.map((e,i) => (
                         <EventElement 
                             key={i}
-                            eventId={e.id} 
-                            title={e.title}
-                            cash={e.cash}
+                            eventId={e.uuid} 
+                            title={e.name}
+                            cash={e.balance}
                         />
                     ))
                 }
-                {/* {
-                    Array(50).fill().map((_,i) => (
-                        <p key={i}>d</p>
-                    ))
-                } */}
             </ElementContainer>
 
             <ButtonEventCreate onClick={() => navigate("/events/unclassified")}>이벤트 생성하기</ButtonEventCreate>

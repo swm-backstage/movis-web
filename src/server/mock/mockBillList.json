@@ -1,184 +1,148 @@
 {
-    "billList": [
+    "feeElements": [
         {
-            "id": 1,
+            "transactionHistoryId": "uuid1",
+            "status": "BILL",
+            "id": "1",
             "name": "홀수 이벤트",
-            "contents": "내용",
-            "cash": 10000,
-            "billType": "deposit",
-            "accountNumber": "1234",
-            "bankCode": "090",
-            "createdAt": "2024-06-24T16:11:00"
+            "amount": 10000,
+            "paidAt": "2024-06-24T16:11:00"
         },
         {
-            "id": 2,
+            "transactionHistoryId": "uuid2",
+            "status": "BILL",
+            "id": "2",
             "name": "홀수 이벤트2",
-            "contents": "백진암",
-            "cash": 0,
-            "billType": "deposit",
-            "accountNumber": "3333",
-            "bankCode": "1234",
-            "createdAt": "2024-06-27T15:03:45"
+            "amount": 0,
+            "paidAt": "2024-06-27T15:03:45"
         },
         {
-            "id": 3,
+            "transactionHistoryId": "uuid3",
+            "status": "BILL",
+            "id": "3",
             "name": "백진암",
-            "contents": "ㅊㅊ",
-            "cash": 0,
-            "billType": "deposit",
-            "accountNumber": "1234",
-            "bankCode": "1234",
-            "createdAt": "2024-06-27T15:03:45"
+            "amount": 0,
+            "paidAt": "2024-06-27T15:03:45"
         },
         {
-            "id": 4,
+            "transactionHistoryId": "uuid4",
+            "status": "BILL",
+            "id": "4",
             "name": "69° in Busan",
-            "contents": "Cloudy · See full forecast",
-            "cash": 0,
-            "billType": "deposit",
-            "accountNumber": "1234",
-            "bankCode": "1234",
-            "createdAt": "2024-06-27T15:03:45"
+            "amount": 0,
+            "paidAt": "2024-06-27T15:03:45"
         },
         {
-            "id": 5,
+            "transactionHistoryId": "uuid5",
+            "status": "BILL",
+            "id": "5",
             "name": "[프로그래머스]",
-            "contents": "2024년 현대모비스 알고리즘 경진대회 예선 참여 안내",
-            "cash": 0,
-            "billType": "deposit",
-            "accountNumber": "1234",
-            "bankCode": "1234",
-            "createdAt": "2024-06-27T15:03:45"
+            "amount": 0,
+            "paidAt": "2024-06-27T15:03:45"
         },
         {
-            "id": 6,
+            "transactionHistoryId": "uuid6",
+            "status": "BILL",
+            "id": "6",
             "name": "SW마에스트로",
-            "contents": "[SW마에스트로] 6월 뉴스레터",
-            "cash": 0,
-            "billType": "deposit",
-            "accountNumber": "1234",
-            "bankCode": "1234",
-            "createdAt": "2024-06-27T15:03:45"
+            "amount": 0,
+            "paidAt": "2024-06-27T15:03:45"
         },
         {
-            "id": 7,
+            "transactionHistoryId": "uuid7",
+            "status": "BILL",
+            "id": "7",
             "name": "76° tomorrow · 4° cooler than today",
-            "contents": "See full forecast for Busan",
-            "cash": 0,
-            "billType": "deposit",
-            "accountNumber": "1234",
-            "bankCode": "1234",
-            "createdAt": "2024-06-27T15:03:45"
+            "amount": 0,
+            "paidAt": "2024-06-27T15:03:45"
         },
         {
-            "id": 8,
+            "transactionHistoryId": "uuid8",
+            "status": "BILL",
+            "id": "8",
             "name": "76° tomorrow · 4° cooler than today",
-            "contents": "See full forecast for Busan",
-            "cash": 0,
-            "billType": "deposit",
-            "accountNumber": "1234",
-            "bankCode": "1234",
-            "createdAt": "2024-06-27T15:03:45"
+            "amount": 0,
+            "paidAt": "2024-06-27T15:03:45"
         },
         {
-            "id": 9,
+            "transactionHistoryId": "uuid9",
+            "status": "BILL",
+            "id": "9",
             "name": "74° tomorrow · 6° cooler than today",
-            "contents": "See full forecast for Busan",
-            "cash": 0,
-            "billType": "deposit",
-            "accountNumber": "1234",
-            "bankCode": "1234",
-            "createdAt": "2024-06-27T15:03:45"
+            "amount": 0,
+            "paidAt": "2024-06-27T15:03:45"
         },
         {
-            "id": 10,
+            "transactionHistoryId": "uuid10",
+            "status": "BILL",
+            "id": "10",
             "name": "76° tomorrow · 4° cooler than today",
-            "contents": "See full forecast for Busan",
-            "cash": 0,
-            "billType": "deposit",
-            "accountNumber": "1234",
-            "bankCode": "1234",
-            "createdAt": "2024-06-27T15:03:45"
+            "amount": 0,
+            "paidAt": "2024-06-27T15:03:45"
         },
         {
-            "id": 11,
+            "transactionHistoryId": "uuid11",
+            "status": "BILL",
+            "id": "11",
             "name": "백진암",
-            "contents": "abc",
-            "cash": 0,
-            "billType": "deposit",
-            "accountNumber": "1234",
-            "bankCode": "1234",
-            "createdAt": "2024-06-27T15:03:45"
+            "amount": 0,
+            "paidAt": "2024-06-27T15:03:45"
         },
         {
-            "id": 12,
+            "transactionHistoryId": "uuid12",
+            "status": "BILL",
+            "id": "12",
             "name": "백진암",
-            "contents": "제목 테스트",
-            "cash": 0,
-            "billType": "deposit",
-            "accountNumber": "1234",
-            "bankCode": "1234",
-            "createdAt": "2024-06-27T15:03:45"
+            "amount": 0,
+            "paidAt": "2024-06-27T15:03:45"
         },
         {
-            "id": 13,
+            "transactionHistoryId": "uuid13",
+            "status": "BILL",
+            "id": "13",
             "name": "백진암",
-            "contents": "aaaa",
-            "cash": 0,
-            "billType": "deposit",
-            "accountNumber": "1234",
-            "bankCode": "1234",
-            "createdAt": "2024-06-27T15:03:45"
+            "amount": 0,
+            "paidAt": "2024-06-27T15:03:45"
         },
         {
-            "id": 14,
+            "transactionHistoryId": "uuid14",
+            "status": "BILL",
+            "id": "14",
             "name": "백진암",
-            "contents": "aaaa",
-            "cash": 0,
-            "billType": "deposit",
-            "accountNumber": "1234",
-            "bankCode": "1234",
-            "createdAt": "2024-06-27T15:03:45"
+            "amount": 0,
+            "paidAt": "2024-06-27T15:03:45"
         },
         {
-            "id": 15,
+            "transactionHistoryId": "uuid15",
+            "status": "BILL",
+            "id": "15",
             "name": "76° in Busan",
-            "contents": "Cloudy · See full forecast",
-            "cash": 0,
-            "billType": "deposit",
-            "accountNumber": "1234",
-            "bankCode": "1234",
-            "createdAt": "2024-06-27T15:03:45"
+            "amount": 0,
+            "paidAt": "2024-06-27T15:03:45"
         },
         {
-            "id": 17,
+            "transactionHistoryId": "uuid16",
+            "status": "BILL",
+            "id": "17",
             "name": "75° in Busan",
-            "contents": "Cloudy · See full forecast",
-            "cash": 0,
-            "billType": "deposit",
-            "accountNumber": "1234",
-            "bankCode": "1234",
-            "createdAt": "2024-06-27T15:03:45"
+            "amount": 0,
+            "paidAt": "2024-06-27T15:03:45"
         },
         {
-            "id": 18,
+            "transactionHistoryId": "uuid17",
+            "status": "BILL",
+            "id": "18",
             "name": "75° in Busan",
-            "contents": "Cloudy · See full forecast",
-            "cash": 0,
-            "billType": "deposit",
-            "accountNumber": "1234",
-            "bankCode": "1234",
-            "createdAt": "2024-06-27T15:03:45"
+            "amount": 0,
+            "paidAt": "2024-06-27T15:03:45"
         },
         {
-            "id": 20,
+            "transactionHistoryId": "uuid18",
+            "status": "BILL",
+            "id": "20",
             "name": "75° in Busan",
-            "contents": "Cloudy · See full forecast",
-            "cash": 0,
-            "billType": "deposit",
-            "accountNumber": "1234",
-            "bankCode": "1234",
-            "createdAt": "2024-06-27T15:03:45"
+            "amount": 0,
+            "paidAt": "2024-06-27T15:03:45"
         }
     ]
 }

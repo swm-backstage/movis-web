@@ -38,7 +38,7 @@ export default function EventElement({title, cash, eventId}){
 
     return(
         <ElementContainer
-            onClick={() => navigate(`/events/${clubId}/${eventId}`)}
+            onClick={() => navigate(`/clubs/${clubId}/events/${eventId}`)}
         >
             <HeaderText>{title}</HeaderText>
             <CashContainer>

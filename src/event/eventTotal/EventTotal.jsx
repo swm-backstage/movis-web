@@ -2,6 +2,7 @@ import { styled } from "styled-components";
 import EventLog from "../components/EventLog";
 import { useEffect, useState } from "react";
 import { getAllBillList } from "../../server/bills";
+import { useParams } from "react-router-dom";
 
 const InfoContainer = styled.div`
     display: flex;
@@ -53,28 +54,29 @@ const SummaryValue = styled.span`
 `
 
 const mock = {
-    billList: [{
-        id: 1,
-        name: "로딩중",
-        contents: "",
-        cash: 0,
-        billType: "deposit",
-        bankNumber: "1234",
-        bankCode: "090",
-        createdAt: "2000-01-01T00:00:00"
-    }],
-    totalBalance: 7000000,
-    totalDeposit: 10000000,
-    totalWithdrawal: 3000000
+    "feeElements": [
+        {
+            "transactionHistoryId": "uuid1",
+            "status": "BILL",
+            "id": "uuid1",
+            "name": "로딩중",
+            "amount": 0,
+            "paidAt": "2000-01-01T00:00:00"
+        }
+    ],
+    "totalBalance": 7000000,
+    "totalDeposit": 10000000,
+    "totalWithdrawal": 3000000
 }
 
 export default function EventTotal() {
-    const [billData, setBillData] = useState(mock);
+    const [totalData, setTotalData] = useState(mock);
+    const params = useParams();
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await getAllBillList();
-            setBillData(response);
+            const response = await getAllBillList(params.clubId,"2000-01-01T00:00:00", "first", 20);
+            setTotalData(response);
         }
         fetchData();
     }, []);
@@ -86,7 +88,7 @@ export default function EventTotal() {
 
             <ScrollContainer>
                 {
-                    billData.billList.map((log, i) => (
+                    totalData.feeElements.map((log, i) => (
                         <EventLog e={log} key={i} />
                     ))
                 }
@@ -95,15 +97,15 @@ export default function EventTotal() {
             <SummaryContainer>
                 <SummaryItem fontSize={"1.6rem"}>
                     <span>총계 (모임통장 기준)</span>
-                    <SummaryValue color="#8000ff">{billData.totalBalance.toLocaleString()}원</SummaryValue>
+                    <SummaryValue color="#8000ff">{totalData.totalBalance.toLocaleString()}원</SummaryValue>
                 </SummaryItem>
                 <SummaryItem>
                     <span>총 입금</span>
-                    <SummaryValue color="#00a000">{billData.totalDeposit?.toLocaleString()}원</SummaryValue>
+                    <SummaryValue color="#00a000">{totalData.totalDeposit?.toLocaleString()}원</SummaryValue>
                 </SummaryItem>
                 <SummaryItem>
                     <span>총 출금</span>
-                    <SummaryValue color="#ff0000">{billData.totalWithdrawal?.toLocaleString()}원</SummaryValue>
+                    <SummaryValue color="#ff0000">{totalData.totalWithdrawal?.toLocaleString()}원</SummaryValue>
                 </SummaryItem>
             </SummaryContainer>
         </InfoContainer>

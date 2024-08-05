@@ -1,7 +1,13 @@
 import { useState } from "react";
 import { styled } from "styled-components";
-import Modal from "../../components/Modal";
 import ModalForLog from "../eventInfo/components/ModalForLog";
+
+const TitleContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+`;
 
 const ElementLog = styled.div`
     display: flex;
@@ -45,6 +51,16 @@ const CircleForType = styled.div`
     color : white;
 `
 
+const Title = styled.h3`
+    margin-right: 10px;
+    font-weight: bold;
+`;
+
+const TitleDescription = styled.p`
+    font-size: 14px;
+    color: #A0A0A0;
+`
+
 export default function EventLog({e}) {
     const [showModal, setShowModal] = useState(false);
 
@@ -64,7 +80,11 @@ export default function EventLog({e}) {
                             <CircleForType $color={colorSet.withdraw}>출</CircleForType>
                         )
                     }
-                    <p>{e.name}</p>
+
+                    <TitleContainer>
+                        <Title>{e.name}</Title>
+                        <TitleDescription>{e.paidAt.slice(0, -1)}</TitleDescription>
+                    </TitleContainer>
                 </ElementLeft>
                 <ElementRight 
                     $color={e.amount >= 0 

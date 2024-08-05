@@ -85,7 +85,7 @@ export default function EventList(){
             </TextArea>
 
             <ButtonUnclassified onClick={() => navigate("/events/unclassified")}>
-                미분류 이벤트 바로가기 <IoIosArrowForward/> 
+                미분류 회비 바로가기 <IoIosArrowForward/> 
             </ButtonUnclassified>
 
             <ElementContainer>

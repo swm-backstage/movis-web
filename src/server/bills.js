@@ -24,3 +24,14 @@ export async function getBillDetail(billUid) {
 
     return mockBillDetail;
 }
+
+export async function getUnclassifiedBillList(clubId) {
+    try {
+        const response = await axiosInstance.get(
+            `/api/v1/transactionHistories/unClassification&clubId=${clubId}`);
+        return response.data;
+    } catch (e) {
+        console.error(e);
+        return mockBillList;
+    }
+}

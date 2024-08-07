@@ -56,17 +56,20 @@ const HeaderText = styled.h1`
 
 const DescriptText = styled.p``
 
+const mockEventList = {
+    "eventList" : [
+        {
+            "uuid": 1,
+            "name" : "로딩중...",
+            "balance" : 0
+        }
+    ]
+};
+
 export default function EventList(){
-    const [eventList, setEventList] = useState({
-        "eventList" : [
-            {
-                "uuid": 1,
-                "name" : "로딩중...",
-                "balance" : 0
-            }
-        ]
-    });
+    const [eventList, setEventList] = useState(mockEventList);
     const navigate = useNavigate();
+    const { clubId } = useParams();
     
     useEffect(() => {
         const fetchData = async () => {
@@ -84,8 +87,8 @@ export default function EventList(){
                 <DescriptText>우측 금액은 이벤트 내 내역 합계입니다</DescriptText>
             </TextArea>
 
-            <ButtonUnclassified onClick={() => navigate("/events/unclassified")}>
-                미분류 회비 바로가기 <IoIosArrowForward/> 
+            <ButtonUnclassified onClick={() => navigate(`/clubs/${clubId}/events/unclassified`)}>
+                미분류 내역 바로가기 <IoIosArrowForward/> 
             </ButtonUnclassified>
 
             <ElementContainer>
@@ -101,7 +104,7 @@ export default function EventList(){
                 }
             </ElementContainer>
 
-            <ButtonEventCreate onClick={() => navigate("/events/unclassified")}>이벤트 생성하기</ButtonEventCreate>
+            <ButtonEventCreate onClick={() => navigate("/test")}>이벤트 생성하기</ButtonEventCreate>
         </BodyContainer>
     )
 }

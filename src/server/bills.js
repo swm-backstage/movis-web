@@ -1,15 +1,20 @@
-import axios from "axios"
 import mockBillList from "./mock/mockBillList.json"
 import mockBillDetail from "./mock/mockBillDetail.json"
 import mockAllBillList from "./mock/mockAllBillList.json"
 import axiosInstance from "./axiosInstance"
 
-export async function getBillList(eventId) {
-    
-    return mockBillList;
+export async function getBillList(eventId, lastPaidAt, lastId, size) {
+    try{
+        const response = await axiosInstance.get(
+            `/api/v1/transactionHistories/fromEvent&eventId=${eventId}&lastPaidAt=${lastPaidAt}&lastId=${lastId ? lastId : "first"}&size=${size ? size : 20}`);
+        return response.data;
+    } catch (e) {
+        console.error(e);
+        return mockBillList;
+    }
 }
 
-export async function getAllBillList({clubId, lastPaidAt, lastId, size}) {
+export async function getAllBillList(clubId, lastPaidAt, lastId, size) {
     try {
         const response = await axiosInstance.get(
             `/api/v1/transactionHistories/fromclub&clubId=${clubId}&lastPaidAt=${lastPaidAt}&lastId=${lastId ? lastId : "first"}&size=${size ? size : 20}`);

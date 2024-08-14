@@ -2,6 +2,7 @@ import { styled } from "styled-components";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import UnclassifiedLog from "./components/UnclassifiedLog";
+import { getUnclassifiedBillList } from "../../server/bills";
 
 const InfoContainer = styled.div`
     display: flex;
@@ -52,6 +53,14 @@ const mock = {
 export default function EventUnclassified (){
     const [billData, setBillData] = useState(mock);
     const { clubId } = useParams();
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const data = await getUnclassifiedBillList(clubId);
+            setBillData(data);
+        }
+        fetchData();
+    }, [clubId])
     
     return (
         <InfoContainer>
@@ -61,7 +70,7 @@ export default function EventUnclassified (){
 
             <ScrollContainer>
                 {
-                    billData.transactionHistoryDtoList.map((log, i) => (
+                    billData.transactionHistoryDtoList?.map((log, i) => (
                         <UnclassifiedLog e={log} key={i}/>
                     ))
                 }

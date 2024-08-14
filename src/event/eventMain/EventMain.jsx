@@ -98,11 +98,11 @@ const mock = {
 
 export default function EventMain(){
     const [eventList, setEventList] = useState(mock);
-    const prams = useParams();
+    const params = useParams();
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await getEventList(prams.clubId, 3);
+            const response = await getEventList(params.clubId, 3);
             setEventList(response);
         }
         fetchData();
@@ -120,7 +120,7 @@ export default function EventMain(){
                     ))
                 }
             </AlertContainer>
-            <Title>현재 접수중인 회비</Title>
+            <Title>현재 접수중인 이벤트</Title>
             <RemainedFeeContainer>
                 {
                     mockForRemainedFee.map((item) => (

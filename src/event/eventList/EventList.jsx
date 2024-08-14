@@ -59,7 +59,7 @@ const DescriptText = styled.p``
 const mockEventList = {
     "eventList" : [
         {
-            "uuid": 1,
+            "eventId": 1,
             "name" : "로딩중...",
             "balance" : 0
         }
@@ -73,7 +73,7 @@ export default function EventList(){
     
     useEffect(() => {
         const fetchData = async () => {
-            const response = await getEventList();
+            const response = await getEventList(clubId, 20, "first");
             setEventList(response);
         }
         fetchData();
@@ -96,7 +96,7 @@ export default function EventList(){
                     eventList.eventList.map((e,i) => (
                         <EventElement 
                             key={i}
-                            eventId={e.uuid} 
+                            eventId={e.eventId} 
                             title={e.name}
                             cash={e.balance}
                         />

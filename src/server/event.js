@@ -1,4 +1,3 @@
-import axios from "axios"
 import mockEventList from "./mock/mockEventList.json"
 import axiosInstance from "./axiosInstance";
 

@@ -57,7 +57,7 @@ export default function EventInfo(){
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await getBillList(eventId);
+            const response = await getBillList(eventId, "2000-01-01T00:00:00", "first", 20);
             setBillData(response);
         }
         fetchData();

@@ -60,7 +60,7 @@ export default function EventUnclassified (){
             setBillData(data);
         }
         fetchData();
-    }, [clubId])
+    }, [])
     
     return (
         <InfoContainer>
@@ -70,7 +70,7 @@ export default function EventUnclassified (){
 
             <ScrollContainer>
                 {
-                    billData.transactionHistoryDtoList?.map((log, i) => (
+                    billData.transactionHistoryDtoList.map((log, i) => (
                         <UnclassifiedLog e={log} key={i}/>
                     ))
                 }

@@ -6,7 +6,7 @@ import axiosInstance from "./axiosInstance"
 export async function getBillList(eventId, lastPaidAt, lastId, size) {
     try{
         const response = await axiosInstance.get(
-            `/api/v1/transactionHistories/fromEvent&eventId=${eventId}&lastPaidAt=${lastPaidAt}&lastId=${lastId ? lastId : "first"}&size=${size ? size : 20}`);
+            `/api/v1/transactionHistories/fromEvent?eventId=${eventId}&lastPaidAt=${lastPaidAt}&lastId=${lastId ? lastId : "first"}&size=${size ? size : 20}`);
         return response.data;
     } catch (e) {
         console.error(e);
@@ -17,7 +17,7 @@ export async function getBillList(eventId, lastPaidAt, lastId, size) {
 export async function getAllBillList(clubId, lastPaidAt, lastId, size) {
     try {
         const response = await axiosInstance.get(
-            `/api/v1/transactionHistories/fromclub&clubId=${clubId}&lastPaidAt=${lastPaidAt}&lastId=${lastId ? lastId : "first"}&size=${size ? size : 20}`);
+            `/api/v1/transactionHistories/fromClub?clubId=${clubId}&lastPaidAt=${lastPaidAt}&lastId=${lastId ? lastId : "first"}&size=${size ? size : 20}`);
         return response.data;
     } catch (e) {
         console.error(e);
@@ -33,7 +33,7 @@ export async function getBillDetail(billUid) {
 export async function getUnclassifiedBillList(clubId) {
     try {
         const response = await axiosInstance.get(
-            `/api/v1/transactionHistories/unClassification&clubId=${clubId}`);
+            `/api/v1/transactionHistories/unClassification?clubId=${clubId}`);
         return response.data;
     } catch (e) {
         console.error(e);

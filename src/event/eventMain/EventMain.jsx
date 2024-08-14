@@ -2,7 +2,7 @@ import styled from "styled-components";
 import RemainedFee from "./components/RemainedFee";
 import EventElement from "../components/EventElement";
 import { useEffect, useState } from "react";
-import { getEventList } from "../../server/event";
+import { getEventList, getEventsUnfinished } from "../../server/event";
 import { useParams } from "react-router-dom";
 
 const MainContainer = styled.div`
@@ -86,7 +86,7 @@ const mockForRemainedFee = [
 ]
 
 
-const mock = {
+const mockForEventList = {
     "eventList" : [
         {
             "uuid": 1,
@@ -96,12 +96,32 @@ const mock = {
     ]
 };
 
+const mockForEventUnfinished = {
+    "eventFundingListDto": [
+      {
+        "eventId": "string",
+        "name": "string",
+        "totalPaymentAmount": 0,
+        "paymentDeadline": "2024-07-23"
+      }
+    ]
+}
+
 export default function EventMain(){
-    const [eventList, setEventList] = useState(mock);
+    const [eventList, setEventList] = useState(mockForEventList);
+    const [eventUnfinished, setEventUnfinished] = useState(mockForEventUnfinished);
     const params = useParams();
 
     useEffect(() => {
         const fetchData = async () => {
+            Promise.all([
+                getEventList(params.clubId, 3),
+                getEventsUnfinished(params.clubId)
+            ]).then((values) => {
+                setEventList(values[0]);
+                setEventUnfinished(values[1]);
+            });
+
             const response = await getEventList(params.clubId, 3);
             setEventList(response);
         }
@@ -120,16 +140,16 @@ export default function EventMain(){
                     ))
                 }
             </AlertContainer>
-            <Title>현재 접수중인 이벤트</Title>
+            <Title>현재 모임에서 접수중인 이벤트</Title>
             <RemainedFeeContainer>
                 {
-                    mockForRemainedFee.map((item) => (
+                    eventUnfinished.eventFundingListDto.map((item) => (
                         <RemainedFee
-                            key={item.id}
-                            $title={item.title}
-                            $duedate={item.duedate}
-                            $amount={item.amount}
-                            $state={item.state}
+                            key={item.eventId}
+                            $title={item.name}
+                            $duedate={item.paymentDeadline}
+                            $amount={item.totalPaymentAmount}
+                            $state={0}
                         />
                     ))
                 }

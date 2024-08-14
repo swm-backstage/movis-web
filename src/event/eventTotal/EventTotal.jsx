@@ -75,7 +75,10 @@ export default function EventTotal() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await getAllBillList(params.clubId,"2000-01-01T00:00:00", "first", 20);
+            const now = new Date();
+            const formattedDateTime = now.toISOString().split('.')[0];
+
+            const response = await getAllBillList(params.clubId, formattedDateTime, "first", 20);
             setTotalData(response);
         }
         fetchData();

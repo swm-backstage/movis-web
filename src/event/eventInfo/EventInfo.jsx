@@ -4,6 +4,7 @@ import MenuItem from "./components/MenuItem";
 import { useEffect, useState } from "react";
 import { getBillList } from "../../server/bills";
 import { useParams } from "react-router-dom";
+import { getEventInfo } from "../../server/event";
 
 const InfoContainer = styled.div`
     display: flex;
@@ -38,7 +39,7 @@ const NotFoundText = styled.p`
     text-decoration: underline;
 `
 
-const mock = {
+const mockBillData = {
     "feeElements": [
         {
             "transactionHistoryId": "uuid1",
@@ -51,14 +52,27 @@ const mock = {
     ]
 }
 
+const mockEventData = {
+    "name": "로딩중",
+    "balance": 0,
+    "totalPaymentAmount": 0,
+    "paymentDeadline": null
+}
+
 export default function EventInfo(){
-    const [billData, setBillData] = useState(mock);
+    const [billData, setBillData] = useState(mockBillData);
+    const [eventData, setEventData] = useState(mockEventData);
     const { eventId, clubId } = useParams();
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await getBillList(eventId, "2000-01-01T00:00:00", "first", 20);
-            setBillData(response);
+            Promise.all([
+                getBillList(eventId, "2000-01-01T00:00:00", "first", 20),
+                getEventInfo(eventId)
+            ]).then(([billResponse, eventResponse]) => {
+                setBillData(billResponse);
+                setEventData(eventResponse);
+            });
         }
         fetchData();
     }, [])
@@ -73,7 +87,7 @@ export default function EventInfo(){
     
     return (
         <InfoContainer>
-            <Title>이벤트 A</Title>
+            <Title>{eventData.name}</Title>
             <EventDescription>이 이벤트에서 발생한 모든 거래내역 입니다.</EventDescription>
             <NotFoundText>내역이 보이지 않나요?</NotFoundText>
 

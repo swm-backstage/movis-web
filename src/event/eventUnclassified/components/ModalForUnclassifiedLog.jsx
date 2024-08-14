@@ -53,13 +53,13 @@ const mock = {
 export default function ModalForUnclassifiedLog({ onModal, logId }) {
     const [billData, setBillData] = useState(mock);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const response = await getUnclassifiedBillList(logId);
-            setBillData(response);
-        };
-        fetchData();
-    }, [logId]);
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         const response = await getUnclassifiedBillList(logId);
+    //         setBillData(response);
+    //     };
+    //     fetchData();
+    // }, [logId]);
 
     const formattedDate = new Date(billData.date).toLocaleString('ko-KR', {
         year: 'numeric',

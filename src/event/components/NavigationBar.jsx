@@ -30,12 +30,12 @@ const navItems = [
   // { label: '설정', 'icon': IoMdSettings, 'component': <Settings/> },
 ];
 
-export default function NavigationBar({ onSelectedBody }) {
+export default function NavigationBar({ handleSelectedBody }) {
   const [activeItem, setActiveItem] = useState(0);
   const { clubId } = useParams();
 
   useEffect(() => {
-    onSelectedBody(navItems[activeItem].component)
+    handleSelectedBody(navItems[activeItem].component)
   }, [activeItem]);
 
   return (

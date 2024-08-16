@@ -89,8 +89,10 @@ export default function EventInfo(){
 
     const menuItems = [
         { label: '이벤트 회비 관리', action: sendMessageToNativeForEventConfig },
-        { label: '회원 납부 현황', to: `memberInfo` },
-        { label: '이벤트 거래내역 엑셀 내보내기', to: `excel` },
+        { label: '회원 납부 현황', to: `` },
+        { label: '이벤트 거래내역 엑셀 내보내기', to: `` },
+        // { label: '회원 납부 현황', to: `memberInfo` },
+        // { label: '이벤트 거래내역 엑셀 내보내기', to: `excel` },
     ];
 
     

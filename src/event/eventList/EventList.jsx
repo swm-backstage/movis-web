@@ -40,7 +40,7 @@ const ButtonEventCreate = styled.button`
     left: 0;
     right: 0;
 
-    background-color: transparent;
+    background-color: white;
     border: 1px solid black;
     padding: 10px 0;
     

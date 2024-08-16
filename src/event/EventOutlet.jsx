@@ -26,7 +26,7 @@ export default function EventOutlet() {
       <BodyContainer>
         <Outlet context={{BodyComponent}}/>
       </BodyContainer>
-      <NavigationBar onSelectedBody={setBodyComponent} />
+      <NavigationBar handleSelectedBody={setBodyComponent} />
     </Container>
   );
 }

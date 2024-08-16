@@ -119,7 +119,7 @@ export default function EventMain(){
                 }
             </RemainedFeeContainer>
 
-            <Title>이벤트 목록</Title>
+            <Title>이벤트 목록 미리보기</Title>
             <ElementContainer>
                 {
                     eventList.eventList.length === 0 ? (
@@ -137,9 +137,9 @@ export default function EventMain(){
                 }
             </ElementContainer>
             
-            <Button as={Button}>
+            {/* <Button as={Button} onClick={handleButtonClick}>
                 이벤트 바로가기 &gt;
-            </Button>
+            </Button> */}
 
         </MainContainer>
     )

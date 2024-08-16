@@ -79,11 +79,11 @@ export default function EventInfo(){
 
     const sendMessageToNativeForEventConfig = useCallback(() => {
         if (window.ReactNativeWebView) {
-          window.ReactNativeWebView.postMessage({
+          window.ReactNativeWebView.postMessage(JSON.stringify({
             type: "eventConfig",
             clubId: clubId,
             eventId: eventId
-          });
+          }));
         }
     }, [clubId, eventId]);
 

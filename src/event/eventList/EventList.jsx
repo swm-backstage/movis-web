@@ -82,10 +82,10 @@ export default function EventList(){
 
     const sendMessageToNativeForEventCreate = () => {
         if (window.ReactNativeWebView) {
-          window.ReactNativeWebView.postMessage({
+          window.ReactNativeWebView.postMessage(JSON.stringify({
             type: "eventCreate",
             clubId: clubId
-          });
+          }));
         }
     };
 

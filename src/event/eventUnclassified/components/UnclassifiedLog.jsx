@@ -87,7 +87,7 @@ export default function UnclassifiedLog({e}) {
                     </TitleContainer>
                 </ElementLeft>
                 <ElementRight 
-                    $color={e.amount >= 0 
+                    $color={e.status === "FEE"
                         ? `${colorSet.deposit}` : `${colorSet.withdraw}`}
                     >
                     {e.amount?.toLocaleString()} 원

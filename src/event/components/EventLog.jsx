@@ -74,7 +74,7 @@ export default function EventLog({e}) {
             <ElementLog onClick={() => setShowModal(true)}>
                 <ElementLeft>
                     {
-                        e.amount >= 0 ? (
+                        e.status === "FEE" ? (
                             <CircleForType $color={colorSet.deposit}>입</CircleForType>
                         ) : (
                             <CircleForType $color={colorSet.withdraw}>출</CircleForType>
@@ -87,7 +87,7 @@ export default function EventLog({e}) {
                     </TitleContainer>
                 </ElementLeft>
                 <ElementRight 
-                    $color={e.amount >= 0 
+                    $color={e.status === "FEE" 
                         ? `${colorSet.deposit}` : `${colorSet.withdraw}`}
                     >
                     {e.amount?.toLocaleString()} 원

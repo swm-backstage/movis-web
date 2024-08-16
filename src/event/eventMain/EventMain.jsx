@@ -4,6 +4,8 @@ import EventElement from "../components/EventElement";
 import { useEffect, useState } from "react";
 import { getEventList, getEventsUnfinished } from "../../server/event";
 import { useParams } from "react-router-dom";
+import { mockForClubAlert, mockForEventList, mockForEventUnfinished, mockForEventUnfinishedCount } from "./EventMain.mock";
+import { getUnclassfiedBillCount } from "../../server/bills";
 
 const MainContainer = styled.div`
     display: flex;
@@ -53,73 +55,31 @@ const Button = styled.button`
     background-color: white;
 `
 
-const mockForClubAlert = [
-    {
-        id: 1,
-        type: "toast",
-        content: "[구현 안됨]\n현재 납부하지 않은 회비가 1건 있습니다. \n - MT 비용",
-        color: "#FF4E4E"
-    },
-    {
-        id: 2,
-        type: "toast",
-        content: "[구현 안됨]\n분류되지 않은 입출금 내역이 2건 있습니다.",
-        color: "#8F94A8"
-    }
-]
-
-const mockForRemainedFee = [
-    {
-        id: 1,
-        title: "구현 안됨, 임시 데이터 - MT 회비",
-        duedate: "2024-11-01T00:00",
-        amount: 50000,
-        state: 0,
-    },
-    {
-        id: 2,
-        title: "구현 안됨, 임시 데이터 - 임의 회비",
-        duedate: "2023-11-01T00:00",
-        amount: 10000,
-        state: 1,
-    }
-]
-
-
-const mockForEventList = {
-    "eventList" : [
-        {
-            "uuid": 1,
-            "name" : "로딩중...",
-            "balance" : 0
-        }
-    ]
-};
-
-const mockForEventUnfinished = {
-    "eventFundingListDto": [
-      {
-        "eventId": "string",
-        "name": "string",
-        "totalPaymentAmount": 0,
-        "paymentDeadline": "2024-07-23"
-      }
-    ]
-}
-
 export default function EventMain(){
+    const [clubAlert, setClubAlert] = useState(mockForClubAlert);
     const [eventList, setEventList] = useState(mockForEventList);
     const [eventUnfinished, setEventUnfinished] = useState(mockForEventUnfinished);
+    // const [eventUnfinishedCount, setEventUnfinishedCount] = useState(mockForEventUnfinishedCount);
     const params = useParams();
 
     useEffect(() => {
         const fetchData = async () => {
             Promise.all([
                 getEventList(params.clubId, 3),
-                getEventsUnfinished(params.clubId)
+                getEventsUnfinished(params.clubId),
+                getUnclassfiedBillCount(params.clubId)
             ]).then((values) => {
                 setEventList(values[0]);
                 setEventUnfinished(values[1]);
+
+                if(values[2].count > 0) {
+                    setClubAlert([...clubAlert, {
+                        id: -1,
+                        type: "toast",
+                        content: `분류되지 않은 입출금 내역이 ${values[2].count}건 있습니다.`,
+                        color: "#8F94A8"
+                    }]);
+                }
             });
 
             const response = await getEventList(params.clubId, 3);
@@ -132,7 +92,7 @@ export default function EventMain(){
         <MainContainer>
             <AlertContainer>
                 {
-                    mockForClubAlert.map((item) => (
+                    clubAlert.map((item) => (
                         <Alert
                             key={item.id}
                             $color={item.color}
@@ -143,15 +103,19 @@ export default function EventMain(){
             <Title>현재 모임에서 접수중인 이벤트</Title>
             <RemainedFeeContainer>
                 {
-                    eventUnfinished.eventFundingListDto.map((item) => (
-                        <RemainedFee
-                            key={item.eventId}
-                            $title={item.name}
-                            $duedate={item.paymentDeadline}
-                            $amount={item.totalPaymentAmount}
-                            $state={0}
-                        />
-                    ))
+                    eventUnfinished.eventFundingListDto.length === 0 ? (
+                        <p>접수중인 이벤트가 없습니다</p>
+                    ) : (
+                        eventUnfinished.eventFundingListDto.map((item) => (
+                            <RemainedFee
+                                key={item.eventId}
+                                $title={item.name}
+                                $duedate={item.paymentDeadline}
+                                $amount={item.totalPaymentAmount}
+                                $state={0}
+                            />
+                        ))
+                    )
                 }
             </RemainedFeeContainer>
 

@@ -64,9 +64,10 @@ const mock = {
             "paidAt": "2000-01-01T00:00:00"
         }
     ],
-    "totalBalance": 7000000,
-    "totalDeposit": 10000000,
-    "totalWithdrawal": 3000000
+    "isLast": false,
+    "totalBalance": -1,
+    "totalDeposit": -1,
+    "totalWithdraw": -1
 }
 
 export default function EventTotal() {
@@ -108,7 +109,7 @@ export default function EventTotal() {
                 </SummaryItem>
                 <SummaryItem>
                     <span>총 출금</span>
-                    <SummaryValue color="#ff0000">{totalData.totalWithdrawal?.toLocaleString()}원</SummaryValue>
+                    <SummaryValue color="#ff0000">{totalData.totalWithdraw?.toLocaleString()}원</SummaryValue>
                 </SummaryItem>
             </SummaryContainer>
         </InfoContainer>

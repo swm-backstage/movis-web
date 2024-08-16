@@ -103,14 +103,17 @@ export default function EventList(){
 
             <ElementContainer>
                 {
-                    eventList.eventList.map((e,i) => (
-                        <EventElement 
-                            key={i}
-                            eventId={e.eventId} 
-                            title={e.name}
-                            cash={e.balance}
-                        />
-                    ))
+                    eventList.eventList.length === 0 
+                    ? <p>현재 설정된 이벤트가 없습니다 {":("}</p> : (
+                        eventList.eventList.map((e,i) => (
+                            <EventElement 
+                                key={i}
+                                eventId={e.eventId} 
+                                title={e.name}
+                                cash={e.balance}
+                            />
+                        ))
+                    )
                 }
             </ElementContainer>
 

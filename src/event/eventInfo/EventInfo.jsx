@@ -66,8 +66,12 @@ export default function EventInfo(){
 
     useEffect(() => {
         const fetchData = async () => {
+            const now = new Date();
+            const kstNow = new Date(now.getTime() + 9 * 60 * 60 * 1000);
+            const formattedDateTime = kstNow.toISOString().split('.')[0];
+
             Promise.all([
-                getBillList(eventId, "2000-01-01T00:00:00", "first", 20),
+                getBillList(eventId, formattedDateTime, "first", 20),
                 getEventInfo(eventId)
             ]).then(([billResponse, eventResponse]) => {
                 setBillData(billResponse);

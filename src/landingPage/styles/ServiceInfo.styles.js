@@ -25,7 +25,7 @@ export const EnterForm = styled.form`
 `;
 
 export const InputBox = styled.input`
-  width: 20rem;
+  width: 15rem;
   height: 3rem;
   padding: 0 1rem;
   border: none;

@@ -77,8 +77,9 @@ export default function EventTotal() {
     useEffect(() => {
         const fetchData = async () => {
             const now = new Date();
-            const formattedDateTime = now.toISOString().split('.')[0];
-
+            const kstNow = new Date(now.getTime() + 9 * 60 * 60 * 1000);
+            const formattedDateTime = kstNow.toISOString().split('.')[0];
+    
             const response = await getAllBillList(params.clubId, formattedDateTime, "first", 20);
             setTotalData(response);
         }

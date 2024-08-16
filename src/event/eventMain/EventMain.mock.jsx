@@ -1,10 +1,10 @@
 export const mockForClubAlert = [
-    {
-        id: 1,
-        type: "toast",
-        content: "[구현 안됨]\n현재 납부하지 않은 회비가 1건 있습니다. \n - MT 비용",
-        color: "#FF4E4E"
-    }
+    // {
+    //     id: 1,
+    //     type: "toast",
+    //     content: "[구현 안됨]\n현재 납부하지 않은 회비가 1건 있습니다. \n - MT 비용",
+    //     color: "#FF4E4E"
+    // }
 ]
 
 export const mockForEventList = {

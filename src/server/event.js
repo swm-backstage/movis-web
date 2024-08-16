@@ -26,7 +26,8 @@ export async function getEventInfo(eventId) {
 export async function getEventsUnfinished(clubId){
     try {
         const now = new Date();
-        const formattedDateTime = now.toISOString().split('T')[0];
+        const kstNow = new Date(now.getTime() + 9 * 60 * 60 * 1000);
+        const formattedDateTime = kstNow.toISOString().split('T')[0];
 
         const response = await axiosInstance.get(
             `/api/v1/events/funding?clubId=${clubId}&now=${formattedDateTime}`);

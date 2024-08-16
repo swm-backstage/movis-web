@@ -74,7 +74,7 @@ export default function UnclassifiedLog({e}) {
             <ElementLog onClick={() => setShowModal(true)}>
                 <ElementLeft>
                     {
-                        e.amount >= 0 ? (
+                        e.status === "FEE" ? (
                             <CircleForType $color={colorSet.deposit}>입</CircleForType>
                         ) : (
                             <CircleForType $color={colorSet.withdraw}>출</CircleForType>

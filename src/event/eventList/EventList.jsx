@@ -47,6 +47,7 @@ const ButtonEventCreate = styled.button`
     font-size: 18px;
     font-weight: bold;
     color: black;
+    cursor: pointer;
 `
 
 const HeaderText = styled.h1`
@@ -79,6 +80,15 @@ export default function EventList(){
         fetchData();
     }, [])
 
+    const sendMessageToNativeForEventCreate = () => {
+        if (window.ReactNativeWebView) {
+          window.ReactNativeWebView.postMessage({
+            type: "eventCreate",
+            clubId: clubId
+          });
+        }
+    };
+
     return (
         <BodyContainer>
             <TextArea>
@@ -104,7 +114,7 @@ export default function EventList(){
                 }
             </ElementContainer>
 
-            <ButtonEventCreate onClick={() => navigate("/test")}>이벤트 생성하기</ButtonEventCreate>
+            <ButtonEventCreate onClick={() => sendMessageToNativeForEventCreate()}>이벤트 생성하기</ButtonEventCreate>
         </BodyContainer>
     )
 }

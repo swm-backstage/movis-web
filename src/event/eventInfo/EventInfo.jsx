@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
 import EventLog from "../components/EventLog";
 import MenuItem from "./components/MenuItem";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { getBillList } from "../../server/bills";
 import { useParams } from "react-router-dom";
 import { getEventInfo } from "../../server/event";
@@ -77,8 +77,18 @@ export default function EventInfo(){
         fetchData();
     }, [])
 
+    const sendMessageToNativeForEventConfig = useCallback(() => {
+        if (window.ReactNativeWebView) {
+          window.ReactNativeWebView.postMessage({
+            type: "eventConfig",
+            clubId: clubId,
+            eventId: eventId
+          });
+        }
+    }, [clubId, eventId]);
+
     const menuItems = [
-        { label: '이벤트 회비 관리', to: `settings` },
+        { label: '이벤트 회비 관리', action: sendMessageToNativeForEventConfig },
         { label: '회원 납부 현황', to: `memberInfo` },
         { label: '이벤트 거래내역 엑셀 내보내기', to: `excel` },
     ];
@@ -102,7 +112,7 @@ export default function EventInfo(){
             <Title>기능 바로가기</Title>
             <MenuContainer>
                 {menuItems.map((e, i) => (
-                    <MenuItem key={i} label={e.label} to={e.to} />
+                    <MenuItem key={i} label={e.label} to={e.to} action={e.action} />
                 ))}
             </MenuContainer>
             

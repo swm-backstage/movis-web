@@ -19,10 +19,14 @@ const Item = styled.div`
   }
 `;
 
-const MenuItem = ({ to, label }) => {
+const MenuItem = ({ to, label, action}) => {
   const navigate = useNavigate();
 
   const handleNavigation = () => {
+    if (action) {
+      action();
+      return;
+    }
     navigate(to);
   };
 

@@ -5,6 +5,7 @@ import axiosInstance from "./axiosInstance"
 
 export async function getBillList(eventId, lastPaidAt, lastId, size) {
     try{
+        size = 999;
         const response = await axiosInstance.get(
             `/api/v1/transactionHistories/fromEvent?eventId=${eventId}&lastPaidAt=${lastPaidAt}&lastId=${lastId ? lastId : "first"}&size=${size ? size : 20}`);
         return response.data;
@@ -16,6 +17,7 @@ export async function getBillList(eventId, lastPaidAt, lastId, size) {
 
 export async function getAllBillList(clubId, lastPaidAt, lastId, size) {
     try {
+        size = 999;
         const response = await axiosInstance.get(
             `/api/v1/transactionHistories/fromClub?clubId=${clubId}&lastPaidAt=${lastPaidAt}&lastId=${lastId ? lastId : "first"}&size=${size ? size : 20}`);
         return response.data;

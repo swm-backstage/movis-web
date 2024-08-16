@@ -1,150 +1,145 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import NoticeBox from './NoticeBox';
 import { useNavigate } from 'react-router-dom';
-
-const LandingPageContainer = styled.div`
-    background-color: #0f0f23;
-    color: white;
-    font-family: 'Arial', sans-serif;
-`;
-
-const Section = styled.section``;
-
-const Header = styled(Section)`
-    display: flex;
-    align-items: center;
-
-    gap: 1rem;
-    padding: 10px;
-    background-color: #101032;
-`;
-
-const ServiceInfo = styled(Section)`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    padding: 100px 0;
-`;
-
-const Introduce = styled(Section)``;
-
-const Event = styled(Section)``;
-
-const Partners = styled(Section)``;
-
-
-// ----------------------------------------------
-
-const HeaderTitle = styled.h1`
-    font-size: 24px;
-    font-weight: bold;
-`;
-
-const HeaderDescription = styled.p`
-    color: #8b8b8b;
-`;
-
-const ServiceInfoTitle = styled.h2`
-    font-size: 5rem;
-    font-weight: bold;
-`;
-
-const ServiceInfoDescription = styled.p`
-    font-size: 1.5rem;
-    color: #b8b8b8;
-`;
-
-const EnterForm = styled.form`
-    display: flex;
-    gap: 1rem;
-`;
-
-const InputBox = styled.input`
-    width: 20rem;
-    height: 3rem;
-    padding: 0 1rem;
-    border: none;
-    border-radius: 5px;
-`;
-
-const EnterButton = styled.button`
-    width: 5rem;
-    height: 3rem;
-    border: none;
-    border-radius: 5px;
-    background-color: #ee5454;
-    color: white;
-`;
+import NoticeBox from './NoticeBox';
+import { LandingPageContainer } from './styles/LandingPage.styles';
+import { Header, HeaderTitle, HeaderDescription } from './styles/Header.styles';
+import { ServiceInfo, ServiceInfoTitle, ServiceInfoDescription, EnterForm, InputBox, EnterButton } from './styles/ServiceInfo.styles';
+import { Introduce, IntroduceTitle, FeatureContainer, FeatureCard, FeatureIcon, FeatureTitle, FeatureDescription } from './styles/Introduce.styles';
+import { Event, EventTitle, EventCardContainer, EventCard, EventImage, EventContent, EventName, EventDescription, EventDate, EventButton } from './styles/Event.styles';
+import { Partners, PartnersTitle, PartnerLogos, PartnerLogo, TrustBadge } from './styles/Partners.styles';
+import { CTAButton } from './styles/common.styles';
 
 const mock = [
-    {
-        "type": "EVENT",
-        "typeColor" : "#ee5454",
-        "content": "여기에 이벤트 내용"
-    },
-    {
-        "type": "NOTICE",
-        "typeColor" : "#00eeff",
-        "content": "여기에 공지 내용"
-    },
-    {
-        "type": "EVENT",
-        "typeColor" : "#ee5454",
-        "content": "여기에 공지 내용1"
-    }
+  {
+    "type": "EVENT",
+    "typeColor" : "#ee5454",
+    "content": "여기에 이벤트 내용"
+  },
+  {
+    "type": "NOTICE",
+    "typeColor" : "#00eeff",
+    "content": "여기에 공지 내용"
+  },
+  {
+    "type": "EVENT",
+    "typeColor" : "#ee5454",
+    "content": "여기에 공지 내용1"
+  }
+];
+
+const eventData = [
+  {
+    id: 1,
+    name: "신규 가입자 이벤트",
+    description: "첫 달 무료 사용과 추가 혜택을 드립니다!",
+    date: "2024년 8월 1일 - 2024년 8월 31일",
+    // image: "https://~~.jpg"
+  },
+  {
+    id: 2,
+    name: "여름 특별 할인",
+    description: "모든 플랜 20% 할인된 가격으로 이용하세요.",
+    date: "2024년 7월 1일 - 2024년 8월 15일",
+    // image: "https://~~.jpg"
+  }
+];
+
+const partnerLogos = [
+  { name: "과학기술정보통신부", url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQolUIZKbQ69rrhd8VgvM2rJj2jKXG0ayIwuw&s" },
+  { name: "산업통상자원부", url: "https://www.fkii.org/openimg.jpg" },
+  { name: "소프트웨어 마에스트로", url: "https://www.swmaestro.org/static/sw/img/common/logo.png" }
 ];
 
 export default function LandingPage() {
-    const [noticeData, setNoticeData] = useState(mock);
-    const [noticeNow, setNoticeNow] = useState(0);
-    const [clubId, setClubId] = useState("");
-    const navigate = useNavigate();
+  const [noticeData, setNoticeData] = useState(mock);
+  const [noticeNow, setNoticeNow] = useState(0);
+  const [clubId, setClubId] = useState("");
+  const navigate = useNavigate();
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setNoticeNow(prevNoticeNow => (prevNoticeNow + 1) % noticeData.length);
-        }, 3000);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setNoticeNow(prevNoticeNow => (prevNoticeNow + 1) % noticeData.length);
+    }, 3000);
 
-        return () => clearInterval(interval);
-    }, [noticeData]);
+    return () => clearInterval(interval);
+  }, [noticeData]);
 
-
-    const handleEnterButton = () => {
-        if (clubId === "") {
-            alert("초대코드를 입력해주세요");
-            return;
-        }
-        navigate(`/clubs/${clubId}`);
+  const handleEnterButton = () => {
+    if (clubId === "") {
+      alert("초대코드를 입력해주세요");
+      return;
     }
+    navigate(`/clubs/${clubId}`);
+  }
 
-    const handleInputChange = (event) => {
-        setClubId(event.target.value);
-    }
+  const handleInputChange = (event) => {
+    setClubId(event.target.value);
+  }
 
-
-    return (
-        <LandingPageContainer>
-            <Header>
-                <HeaderTitle>Movis</HeaderTitle>
-                <HeaderDescription>모임들을 위한 비서 서비스</HeaderDescription>
-            </Header>
-            <ServiceInfo>
-                <ServiceInfoTitle>Movis</ServiceInfoTitle>
-                <ServiceInfoDescription>모임과 회비, 그 끝엔 모비스</ServiceInfoDescription>
-                <NoticeBox
-                    type={noticeData[noticeNow].type}
-                    typeColor={noticeData[noticeNow].typeColor}
-                    content={noticeData[noticeNow].content}/>
-                <EnterForm>
-                    <InputBox placeholder="초대코드를 여기에 입력해주세요" onChange={handleInputChange}></InputBox>
-                    <EnterButton onClick={handleEnterButton}>입장하기</EnterButton>
-                </EnterForm>
-            </ServiceInfo>
-            <Introduce>~~ 서비스 간단 소개 ~~</Introduce>
-            <Event>~~ 이벤트 임의 지정해서 넣기 ~~</Event>
-            <Partners>~~ 파트너사로 과기부, 산업어쩌구, 소마 넣기 ~~</Partners>
-        </LandingPageContainer>
-    );
+  return (
+    <LandingPageContainer>
+      <Header>
+        <HeaderTitle>Movis</HeaderTitle>
+        <HeaderDescription>모임들을 위한 비서 서비스</HeaderDescription>
+      </Header>
+      <ServiceInfo>
+        <ServiceInfoTitle>Movis</ServiceInfoTitle>
+        <ServiceInfoDescription>모임과 회비, 그 끝엔 모비스</ServiceInfoDescription>
+        <NoticeBox
+          type={noticeData[noticeNow].type}
+          typeColor={noticeData[noticeNow].typeColor}
+          content={noticeData[noticeNow].content}/>
+        <EnterForm>
+          <InputBox placeholder="초대코드를 여기에 입력해주세요" onChange={handleInputChange}></InputBox>
+          <EnterButton onClick={handleEnterButton}>입장하기</EnterButton>
+        </EnterForm>
+      </ServiceInfo>
+      <Introduce>
+        <IntroduceTitle>Why Movis?</IntroduceTitle>
+        <FeatureContainer>
+          <FeatureCard>
+            <FeatureIcon>📅</FeatureIcon>
+            <FeatureTitle>회비 관리 간편화</FeatureTitle>
+            <FeatureDescription>모든 회비 정보를 모비스에서 쉽게 확인하세요.</FeatureDescription>
+          </FeatureCard>
+          <FeatureCard>
+            <FeatureIcon>💰</FeatureIcon>
+            <FeatureTitle>투명한 회비 관리</FeatureTitle>
+            <FeatureDescription>회비 납부와 사용 내역을 투명하게 관리합니다.</FeatureDescription>
+          </FeatureCard>
+          <FeatureCard>
+            <FeatureIcon>⚒️</FeatureIcon>
+            <FeatureTitle>회비 관리 자동화</FeatureTitle>
+            <FeatureDescription>매번 힘들게 관리한 회비 정보를 자동화해보세요!</FeatureDescription>
+          </FeatureCard>
+        </FeatureContainer>
+        {/* <CTAButton>더 알아보기</CTAButton> */}
+      </Introduce>
+      <Event>
+        <EventTitle>지금 진행 중인 이벤트</EventTitle>
+        <EventCardContainer>
+          {eventData.map(event => (
+            <EventCard key={event.id}>
+              {/* <EventImage src={event.image} alt={event.name} /> */}
+              <EventContent>
+                <EventName>{event.name}</EventName>
+                <EventDescription>{event.description}</EventDescription>
+                <EventDate>{event.date}</EventDate>
+                {/* <EventButton>참여하기</EventButton> */}
+              </EventContent>
+            </EventCard>
+          ))}
+        </EventCardContainer>
+      </Event>
+      <Partners>
+        <PartnersTitle>Our Partners</PartnersTitle>
+        <PartnerLogos>
+          {partnerLogos.map((partner, index) => (
+            <PartnerLogo key={index} src={partner.url} alt={partner.name} />
+          ))}
+        </PartnerLogos>
+        <TrustBadge>모든 총무들이 신뢰하는 서비스, 모비스</TrustBadge>
+      </Partners>
+    </LandingPageContainer>
+  );
 }

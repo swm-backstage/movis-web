@@ -12,12 +12,12 @@ const HeaderContainer = styled.header`
     font-weight: bold;
 `
 
-export default function Header(){
+export default function Header({clubName}){
 
     return(
         <>
             <HeaderContainer>
-                SW마에스트로
+                {clubName}
             </HeaderContainer>
             <hr style={{width: "calc( 100% - 5px )", margin: "0", padding: "0"}}/>
         </>

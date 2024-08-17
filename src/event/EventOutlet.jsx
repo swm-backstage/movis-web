@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from './components/Header';
 import { styled } from 'styled-components';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 import EventMain from './eventMain/EventMain';
 import NavigationBar from './components/NavigationBar';
+import { getClubInfo } from '../server/club';
 
 const Container = styled.div`
   display: flex;
@@ -19,10 +20,24 @@ const BodyContainer = styled.div`
 
 export default function EventOutlet() {
   const [BodyComponent, setBodyComponent] = useState(<EventMain />);
+  const [clubName, setClubName] = useState("모임 이름 불러오는 중...");
+  const clubId = useParams().clubId;
+
+  useEffect(() => {
+    const fetchClubName = async () => {
+      try {
+        const response = await getClubInfo(clubId)
+        setClubName(response.name);
+      } catch (e) {
+        console.error(e);
+      }
+    };
+    fetchClubName();
+  }, []);
 
   return (
     <Container>
-      <Header />
+      <Header clubName={clubName}/>
       <BodyContainer>
         <Outlet context={{BodyComponent}}/>
       </BodyContainer>

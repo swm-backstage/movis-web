@@ -128,7 +128,7 @@ export default function EventMain(){
                         eventList.eventList.slice(0, 3).map((e, i) => (
                             <EventElement 
                                 key={i}
-                                eventId={e.uuid} 
+                                eventId={e.eventId} 
                                 title={e.name}
                                 cash={e.balance}
                             />

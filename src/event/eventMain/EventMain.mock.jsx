@@ -10,7 +10,7 @@ export const mockForClubAlert = [
 export const mockForEventList = {
     "eventList" : [
         {
-            "uuid": 1,
+            "eventId": 1,
             "name" : "로딩중...",
             "balance" : 0
         }

@@ -42,39 +42,41 @@ const ModalTitle = styled.p`
 `
 
 const mock = {
-    id: 1,
-    name: "로딩중",
-    date: "2000-01-01T00:00",
-    cash: 10000,
-    imageUrl: null,
-    details: "로딩중입니다.",
+    payName: "로딩중",
+    paidAt: "2000-01-01T00:00",
+    amount: 10000,
+    image: null,
+    explanation: "로딩중입니다.",
 };
 
-export default function ModalForLog({ onModal, logId }) {
+export default function ModalForLog({ onModal, logId, type }) {
     const [billData, setBillData] = useState(mock);
+    const [formattedDate, setFormattedDate] = useState("");
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await getBillDetail(logId);
+            const response = await getBillDetail(logId, type);
             setBillData(response);
         };
         fetchData();
     }, [logId]);
 
-    const formattedDate = new Date(billData.date).toLocaleString('ko-KR', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
-        hour12: false,
-    });
+    useEffect(() => {
+        setFormattedDate(new Date(billData.paidAt).toLocaleString('ko-KR', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: false
+        }));
+    }, [billData]);
 
     if (!onModal.enabled) return null;
 
     return (
         <Modal onClose={() => onModal.enable(false)}>
-            <ModalTitle>{billData.name}</ModalTitle>
+            <ModalTitle>{billData.payName}</ModalTitle>
             <ModalContent>
                 <TextContainer>
                     <p>날짜</p>
@@ -83,21 +85,21 @@ export default function ModalForLog({ onModal, logId }) {
 
                 <TextContainer>
                     <p>금액</p>
-                    <p>{billData.cash} 원</p>
+                    <p>{billData.amount} 원</p>
                 </TextContainer>
 
                 <TextContainer>
                     <p>영수증</p>
                     <ChangeButton>이미지 변경</ChangeButton>
                 </TextContainer>
-                <ImageArea $imageurl={billData.imageUrl} />
+                <ImageArea $imageurl={billData.image} />
 
                 <TextContainer>
                     <p>상세</p>
                     <ChangeButton>내용 변경</ChangeButton>
                 </TextContainer>
                 <DetailArea>
-                    {billData.details}
+                    {billData.explanation}
                 </DetailArea>
 
             </ModalContent>

@@ -27,9 +27,19 @@ export async function getAllBillList(clubId, lastPaidAt, lastId, size) {
     }
 }
 
-export async function getBillDetail(billUid) {
-
-    return mockBillDetail;
+export async function getBillDetail(billUid, type) {
+    try {
+        if (type === "fee" || type === "FEE") {
+            const response = await axiosInstance.get(`/api/v1/fees/${billUid}`);
+            return response.data;
+        } else {
+            const response = await axiosInstance.get(`/api/v1/eventBill/${billUid}`);
+            return response.data;
+        }
+    } catch (e) {
+        console.error(e);
+        return mockBillDetail;
+    }
 }
 
 export async function getUnclassifiedBillList(clubId) {

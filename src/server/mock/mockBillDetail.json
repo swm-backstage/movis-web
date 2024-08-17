@@ -1,8 +1,6 @@
 {
-    "id": 1,
-    "name": "[구현 안됨] 임시 기록1",
-    "date": "2024-06-30T00:00",
-    "cash": 10000,
-    "imageUrl": null,
-    "details": "임시 기록1의 상세 내용입니다."
-}
+    "amount": 0,
+    "payName": "string",
+    "explanation": "string",
+    "paidAt": "2024-08-06T14:51:15.425Z"
+  }

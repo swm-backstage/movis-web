@@ -95,8 +95,9 @@ export default function UnclassifiedLog({e}) {
             </ElementLog>
             
             <ModalForUnclassifiedLog
-                logId={e.id}
+                logId={e.elementId}
                 onModal={{enabled: showModal, enable: setShowModal}}
+                type={e.status}
             />
             
         </>

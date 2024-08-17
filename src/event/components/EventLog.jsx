@@ -95,8 +95,9 @@ export default function EventLog({e}) {
             </ElementLog>
             
             <ModalForLog
-                logId={e.id}
+                logId={e.elementId}
                 onModal={{enabled: showModal, enable: setShowModal}}
+                type={e.status}
             />
             
         </>

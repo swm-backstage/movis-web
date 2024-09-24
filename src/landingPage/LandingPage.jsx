@@ -66,10 +66,10 @@ export default function LandingPage() {
 
   const handleEnterButton = () => {
     if (clubId === "") {
-      alert("초대코드를 입력해주세요");
+      alert("입장코드를 입력해주세요");
       return;
     }
-    navigate(`/clubs/${clubId}`);
+    navigate(`/entry/${clubId}`);
   }
 
   const handleInputChange = (event) => {
@@ -90,7 +90,7 @@ export default function LandingPage() {
           typeColor={noticeData[noticeNow].typeColor}
           content={noticeData[noticeNow].content}/>
         <EnterForm>
-          <InputBox placeholder="초대코드를 여기에 입력해주세요" onChange={handleInputChange}></InputBox>
+          <InputBox placeholder="입장코드를 여기에 입력해주세요" onChange={handleInputChange}></InputBox>
           <EnterButton onClick={handleEnterButton}>입장하기</EnterButton>
         </EnterForm>
       </ServiceInfo>

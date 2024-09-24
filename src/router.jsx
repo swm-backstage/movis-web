@@ -5,6 +5,8 @@ import EventInfo from "./event/eventInfo/EventInfo";
 import LandingPage from "./landingPage/LandingPage";
 import EventUnclassified from "./event/eventUnclassified/EventUnclassified";
 import TestPage from "./testPage/TestPage";
+import InvitePage from "./invitePage/InvitePage";
+import EntryPage from "./entryPage/EntryPage";
 
 export default createBrowserRouter([
     {
@@ -28,6 +30,14 @@ export default createBrowserRouter([
                 element: <EventUnclassified />
             }
         ]
+    },
+    {
+        path: "/invite/:inviteCode",
+        element: <InvitePage />
+    },
+    {
+        path: "/entry/:entryCode",
+        element: <EntryPage />
     },
     {
         path: "test",

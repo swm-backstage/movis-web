@@ -40,7 +40,9 @@ const EntryPage = () => {
 
         try {
             setLoading(true);
-            const clubId = await verifyMember(name, phoneNumber, entryCode);
+            const {clubId, accessToken, refreshToken} = await verifyMember(name, phoneNumber, entryCode);
+            sessionStorage.setItem('accessToken', accessToken);
+            sessionStorage.setItem('refreshToken',refreshToken);
             if (clubId) {
                 navigate(`/clubs/${clubId}`);
             } else {

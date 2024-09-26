@@ -117,7 +117,11 @@ export default function EventList(){
                 }
             </ElementContainer>
 
-            <ButtonEventCreate onClick={() => sendMessageToNativeForEventCreate()}>이벤트 생성하기</ButtonEventCreate>
+            {
+                sessionStorage.getItem('isChongmu') && (
+                    <ButtonEventCreate onClick={() => sendMessageToNativeForEventCreate()}>이벤트 생성하기</ButtonEventCreate>
+                )
+            }
         </BodyContainer>
     )
 }

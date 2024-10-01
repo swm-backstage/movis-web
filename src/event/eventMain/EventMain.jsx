@@ -56,27 +56,11 @@ const Button = styled.button`
 `
 
 export default function EventMain(){
-    const [isChongmuFetched, setChongmuFetched] = useState(false);
     const [clubAlert, setClubAlert] = useState(mockForClubAlert);
     const [eventList, setEventList] = useState(mockForEventList);
     const [eventUnfinished, setEventUnfinished] = useState(mockForEventUnfinished);
     // const [eventUnfinishedCount, setEventUnfinishedCount] = useState(mockForEventUnfinishedCount);
     const params = useParams();
-
-    useEffect(() => {
-        const handleMessage = (event) => {
-          if (event.origin !== window.location.origin) {
-            alert(`총무로 확인됩니다.\n디버깅용 수신데이터:${JSON.stringify(event.data)}`);
-            sessionStorage.setItem('isChongmu',event.data.isChongmu);
-            sessionStorage.setItem('accessToken', event.data.accessToken);
-            setChongmuFetched(true);
-          }
-        };
-        document.addEventListener('message', handleMessage);
-        return () => {
-          document.removeEventListener('message', handleMessage);
-        };
-      }, []);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -102,7 +86,7 @@ export default function EventMain(){
             setEventList(response);
         }
         fetchData();
-    }, [isChongmuFetched])
+    }, [])
 
     return(
         <MainContainer>

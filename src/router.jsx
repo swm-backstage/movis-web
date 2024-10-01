@@ -7,6 +7,7 @@ import EventUnclassified from "./event/eventUnclassified/EventUnclassified";
 import TestPage from "./testPage/TestPage";
 import InvitePage from "./invitePage/InvitePage";
 import EntryPage from "./entryPage/EntryPage";
+import EntryPageForApp from "./entryPage/EntryPageForApp";
 
 export default createBrowserRouter([
     {
@@ -30,6 +31,10 @@ export default createBrowserRouter([
                 element: <EventUnclassified />
             }
         ]
+    },
+    {
+        path: "clubs/:clubId/app",
+        element: <EntryPageForApp />
     },
     {
         path: "/invite/:inviteCode",

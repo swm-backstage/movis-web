@@ -89,6 +89,15 @@ export default function EventList(){
         }
     };
 
+    const sendMessageToNativeForUnClassified = () => {
+        if (window.ReactNativeWebView) {
+          window.ReactNativeWebView.postMessage(JSON.stringify({
+            "type":"unClassifiedTransaction",
+            clubId: clubId
+          }));
+        }
+    };
+
     return (
         <BodyContainer>
             <TextArea>
@@ -97,9 +106,13 @@ export default function EventList(){
                 <DescriptText>우측 금액은 이벤트 내 내역 합계입니다</DescriptText>
             </TextArea>
 
-            <ButtonUnclassified onClick={() => navigate(`/clubs/${clubId}/events/unclassified`)}>
-                미분류 내역 바로가기 <IoIosArrowForward/> 
-            </ButtonUnclassified>
+            {
+                sessionStorage.getItem('isChongmu') && (
+                    <ButtonUnclassified onClick={() => sendMessageToNativeForUnClassified()}>
+                        미분류 내역 바로가기 <IoIosArrowForward/> 
+                    </ButtonUnclassified>
+                )
+            }
 
             <ElementContainer>
                 {

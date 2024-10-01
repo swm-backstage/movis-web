@@ -6,17 +6,20 @@ export default function EntryPageForApp() {
     const params = useParams();
 
     useEffect(() => {
-        const handleMessage = (event) => {
+        const handleMessage = async (event) => {
           if (event.origin !== window.location.origin) {
-            response = JSON.parse(event.data);
-            sessionStorage.setItem('isChongmu',response.isChongmu);
-            sessionStorage.setItem('accessToken', response.accessToken);
-            
-            setTimeout(() => {
-              navigate(`/clubs/${params.clubId}`);
-            }, 100);
+            const response = JSON.parse(event.data);
+
+            await new Promise((resolve) => {
+              sessionStorage.setItem('isChongmu', response.isChongmu);
+              sessionStorage.setItem('accessToken', response.accessToken);
+              resolve();  // 저장이 완료 시 resolve 호출
+            });
+
+            navigate(`/clubs/${params.clubId}`);
           }
         };
+
         document.addEventListener('message', handleMessage);
         return () => {
           document.removeEventListener('message', handleMessage);

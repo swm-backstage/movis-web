@@ -39,6 +39,18 @@ const NotFoundText = styled.p`
     text-decoration: underline;
 `
 
+const ButtonEventCreate = styled.button`
+    background-color: white;
+    border: 1px solid black;
+    padding: 10px 0;
+    
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+    cursor: pointer;
+`
+
+
 const mockBillData = {
     "feeElements": [
         {
@@ -91,6 +103,18 @@ export default function EventInfo(){
         }
     }, [clubId, eventId]);
 
+
+    const sendMessageToNativeForHistoryCreate = () => {
+        if (window.ReactNativeWebView) {
+          window.ReactNativeWebView.postMessage(JSON.stringify({
+            "type":"transactionHistoryCreate",
+            clubId: clubId,
+            eventId: eventId
+          }));
+        }
+    };
+
+
     const menuItems = [
         { label: '이벤트 회비 관리', action: sendMessageToNativeForEventConfig },
         { label: '회원 납부 현황', to: `` },
@@ -114,6 +138,12 @@ export default function EventInfo(){
                     ))
                 }
             </ScrollContainer>
+
+            {
+                sessionStorage.getItem('isChongmu') && (
+                    <ButtonEventCreate onClick={() => sendMessageToNativeForHistoryCreate()}>내역 생성하기</ButtonEventCreate>
+                )
+            }
 
             <Title>기능 바로가기</Title>
             <MenuContainer>

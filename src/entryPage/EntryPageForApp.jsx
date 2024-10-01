@@ -11,14 +11,17 @@ export default function EntryPageForApp() {
             // alert(`총무로 확인됩니다.\n디버깅용 수신데이터:${JSON.stringify(event.data)}`);
             sessionStorage.setItem('isChongmu',event.data.isChongmu);
             sessionStorage.setItem('accessToken', event.data.accessToken);
-            navigate(`/clubs/${params.clubId}`);
+            
+            setTimeout(() => {
+              navigate(`/clubs/${params.clubId}`);
+            }, 1000);
           }
         };
         document.addEventListener('message', handleMessage);
         return () => {
           document.removeEventListener('message', handleMessage);
         };
-      }, []);
+      }, [navigate, params.clubId]);
 
       return (
         <>

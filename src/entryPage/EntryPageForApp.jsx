@@ -8,13 +8,13 @@ export default function EntryPageForApp() {
     useEffect(() => {
         const handleMessage = (event) => {
           if (event.origin !== window.location.origin) {
-            // alert(`총무로 확인됩니다.\n디버깅용 수신데이터:${JSON.stringify(event.data)}`);
-            sessionStorage.setItem('isChongmu',event.data.isChongmu);
-            sessionStorage.setItem('accessToken', event.data.accessToken);
+            response = JSON.parse(event.data);
+            sessionStorage.setItem('isChongmu',response.isChongmu);
+            sessionStorage.setItem('accessToken', response.accessToken);
             
             setTimeout(() => {
               navigate(`/clubs/${params.clubId}`);
-            }, 1000);
+            }, 100);
           }
         };
         document.addEventListener('message', handleMessage);

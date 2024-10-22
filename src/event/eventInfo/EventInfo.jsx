@@ -5,6 +5,7 @@ import { useCallback, useEffect, useState } from "react";
 import { getBillList } from "../../server/bills";
 import { useParams } from "react-router-dom";
 import { getEventInfo } from "../../server/event";
+import useMessage from "../../hook/useMessage";
 
 const InfoContainer = styled.div`
     display: flex;
@@ -75,6 +76,13 @@ export default function EventInfo(){
     const [billData, setBillData] = useState(mockBillData);
     const [eventData, setEventData] = useState(mockEventData);
     const { eventId, clubId } = useParams();
+    const receivedMessage = useMessage();
+
+    useEffect(() => {
+        if (receivedMessage?.action === "refresh") {
+            window.location.reload();
+        }
+    },[receivedMessage])
 
     useEffect(() => {
         const fetchData = async () => {
@@ -145,12 +153,12 @@ export default function EventInfo(){
                 )
             }
 
-            <Title>기능 바로가기</Title>
+            {/* <Title>기능 바로가기</Title>
             <MenuContainer>
                 {menuItems.map((e, i) => (
                     <MenuItem key={i} label={e.label} to={e.to} action={e.action} />
                 ))}
-            </MenuContainer>
+            </MenuContainer> */}
             
         </InfoContainer>
     )

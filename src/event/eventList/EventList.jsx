@@ -4,6 +4,7 @@ import { IoIosArrowForward } from "react-icons/io";
 import EventElement from "../components/EventElement";
 import { useEffect, useState } from "react";
 import { getEventList } from "../../server/event";
+import useMessage from "../../hook/useMessage";
 
 const BodyContainer = styled.div`
     display: flex;
@@ -71,6 +72,13 @@ export default function EventList(){
     const [eventList, setEventList] = useState(mockEventList);
     const navigate = useNavigate();
     const { clubId } = useParams();
+    const receivedMessage = useMessage();
+
+    useEffect(() => {
+        if (receivedMessage?.action === "refresh") {
+            window.location.reload();
+        }
+    },[receivedMessage])
     
     useEffect(() => {
         const fetchData = async () => {

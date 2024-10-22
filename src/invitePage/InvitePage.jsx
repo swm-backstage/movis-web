@@ -88,11 +88,20 @@ const InvitePage = () => {
         }
         try {
             setLoading(true);
-            const clubId = await acceptInvitation(name, phoneNumber, inviteCode);
+            sessionStorage.removeItem('accessToken');
+            sessionStorage.removeItem('refreshToken');
+            const {clubId, accessToken, refreshToken} = await verifyMember(name, phoneNumber, entryCode);
+            if (accessToken) {
+                sessionStorage.setItem('accessToken', accessToken);
+            }
+            if (refreshToken) {
+                sessionStorage.setItem('refreshToken', refreshToken);
+            }
+            
             if (clubId) {
                 navigate(`/clubs/${clubId}`);
             } else {
-                setError('초대 수락에 실패했습니다.');
+                setError('입장에 실패했습니다.');
             }
         } catch (err) {
             setError(err.message || '초대 수락에 실패했습니다.');

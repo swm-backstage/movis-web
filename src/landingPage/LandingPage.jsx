@@ -5,9 +5,7 @@ import { LandingPageContainer } from './styles/LandingPage.styles';
 import { Header, HeaderTitle, HeaderDescription } from './styles/Header.styles';
 import { ServiceInfo, ServiceInfoTitle, ServiceInfoDescription, EnterForm, InputBox, EnterButton } from './styles/ServiceInfo.styles';
 import { Introduce, IntroduceTitle, FeatureContainer, FeatureCard, FeatureIcon, FeatureTitle, FeatureDescription } from './styles/Introduce.styles';
-import { Event, EventTitle, EventCardContainer, EventCard, EventImage, EventContent, EventName, EventDescription, EventDate, EventButton } from './styles/Event.styles';
-import { Partners, PartnersTitle, PartnerLogos, PartnerLogo, TrustBadge } from './styles/Partners.styles';
-import { CTAButton } from './styles/common.styles';
+import { Event, EventTitle, EventCardContainer, EventCard, EventImage, EventContent, EventName, EventDescription, EventDate } from './styles/Event.styles';
 
 const mock = [
   {
@@ -131,15 +129,6 @@ export default function LandingPage() {
           ))}
         </EventCardContainer>
       </Event>
-      <Partners>
-        <PartnersTitle>Our Partners</PartnersTitle>
-        <PartnerLogos>
-          {partnerLogos.map((partner, index) => (
-            <PartnerLogo key={index} src={partner.url} alt={partner.name} />
-          ))}
-        </PartnerLogos>
-        <TrustBadge>모든 총무들이 신뢰하는 서비스, 모비스</TrustBadge>
-      </Partners>
     </LandingPageContainer>
   );
 }

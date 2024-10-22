@@ -66,8 +66,10 @@ const mock = {
     ],
     "isLast": false,
     "totalBalance": -1,
-    "totalDeposit": -1,
-    "totalWithdraw": -1
+    "totalClassifiedDeposit": -1,
+    "totalUnClassifiedDeposit": -1,
+    "totalClassifiedWithdrawal": -1,
+    "totalUnClassifiedWithdrawal": 0
 }
 
 export default function EventTotal() {
@@ -106,11 +108,11 @@ export default function EventTotal() {
                 </SummaryItem>
                 <SummaryItem>
                     <span>총 입금</span>
-                    <SummaryValue color="#00a000">{totalData.totalDeposit?.toLocaleString()}원</SummaryValue>
+                    <SummaryValue color="#00a000">{(totalData.totalClassifiedDeposit + totalData.totalUnClassifiedDeposit)?.toLocaleString()}원</SummaryValue>
                 </SummaryItem>
                 <SummaryItem>
                     <span>총 출금</span>
-                    <SummaryValue color="#ff0000">{totalData.totalWithdraw?.toLocaleString()}원</SummaryValue>
+                    <SummaryValue color="#ff0000">{(totalData.totalClassifiedWithdrawal + totalData.totalUnClassifiedWithdrawal)?.toLocaleString()}원</SummaryValue>
                 </SummaryItem>
             </SummaryContainer>
         </InfoContainer>

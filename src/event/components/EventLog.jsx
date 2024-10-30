@@ -82,7 +82,7 @@ export default function EventLog({e}) {
                     }
 
                     <TitleContainer>
-                        <Title>{e.name}</Title>
+                        <Title>{e.name <= 10 ? e.name : `${e.name.slice(0,10)}...`}</Title>
                         <TitleDescription>{e.paidAt.slice(0, -1)}</TitleDescription>
                     </TitleContainer>
                 </ElementLeft>

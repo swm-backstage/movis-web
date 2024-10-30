@@ -16,7 +16,7 @@ export default function EntryPageForApp() {
               resolve();  // 저장이 완료 시 resolve 호출
             });
 
-            navigate(`/clubs/${params.clubId}`);
+            navigate(`/clubs/${params.clubId}`, {replace : true});
           }
         };
 

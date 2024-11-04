@@ -6,7 +6,6 @@ import LandingPage from "./landingPage/LandingPage";
 import EventUnclassified from "./event/eventUnclassified/EventUnclassified";
 import TestPage from "./testPage/TestPage";
 import InvitePage from "./invitePage/InvitePage";
-import EntryPage from "./entryPage/EntryPage";
 import EntryPageForApp from "./entryPage/EntryPageForApp";
 import Mobile from "./styles/Mobile";
 
@@ -44,10 +43,6 @@ export default createBrowserRouter([
             {
                 path: "/invite/:inviteCode",
                 element: <InvitePage />
-            },
-            {
-                path: "/entry/:entryCode",
-                element: <EntryPage />
             },
             {
                 path: "test",

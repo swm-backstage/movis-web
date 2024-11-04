@@ -40,6 +40,16 @@ const SummaryContainer = styled.div`
     }
 `
 
+const ExcelButton = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+
+    color: white;
+    background-color: green;
+`
+
 const SummaryItem = styled.div`
     display: flex;
     flex-direction: column;
@@ -100,6 +110,8 @@ export default function EventTotal() {
                     ))
                 }
             </ScrollContainer>
+
+            <ExcelButton>엑셀 변환하기</ExcelButton>
 
             <SummaryContainer>
                 <SummaryItem fontSize={"1.6rem"}>

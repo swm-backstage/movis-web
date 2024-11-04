@@ -1,6 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
 import EventOutlet from "./event/EventOutlet";
-import EventNavContainer from "./event/EventNavContainer";
 import EventInfo from "./event/eventInfo/EventInfo";
 import LandingPage from "./landingPage/LandingPage";
 import EventUnclassified from "./event/eventUnclassified/EventUnclassified";
@@ -8,6 +7,9 @@ import TestPage from "./testPage/TestPage";
 import InvitePage from "./invitePage/InvitePage";
 import EntryPageForApp from "./entryPage/EntryPageForApp";
 import Mobile from "./styles/Mobile";
+import EventMain from "./event/eventMain/EventMain";
+import EventList from "./event/eventList/EventList";
+import EventTotal from "./event/eventTotal/EventTotal";
 
 export default createBrowserRouter([
     {
@@ -24,7 +26,15 @@ export default createBrowserRouter([
                 children: [
                     {
                         path: "",
-                        element: <EventNavContainer />
+                        element: <EventMain />
+                    },
+                    {
+                        path: "events",
+                        element: <EventList />
+                    },
+                    {
+                        path: "total",
+                        element: <EventTotal />
                     },
                     {
                         path: "events/:eventId",

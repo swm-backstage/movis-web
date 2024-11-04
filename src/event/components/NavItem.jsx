@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -25,15 +25,18 @@ const StyledNavItem = styled.div`
     }
 `;
 
-const NavItem = ({ now, Icon, active, clubId, children }) => {
+const NavItem = ({ now, Icon, active, children, path}) => {
     const navigate = useNavigate();
-    const location = useLocation();
+
+    // useEffect(() => {
+    //     if (location.path !== path && active.item === now) {
+    //         active.setItem(-1);
+    //     }
+    // },[navigate])
 
     const handleClick = () => {
         active.setItem(now); 
-        if(location.pathname !== "/clubs/" + clubId) {
-            navigate("/clubs/" + clubId);
-        }
+        navigate(path, {replace: true});
     }
 
     return (

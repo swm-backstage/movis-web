@@ -1,0 +1,113 @@
+import React from 'react';
+import styled from 'styled-components';
+import Wrapper from './Wrapper';
+
+const SectionTitle = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+`;
+
+const Title = styled.p`
+  font-size: 16px;
+  font-weight: bold;
+  color: #dc3545;
+  margin: 0;
+`;
+
+const AlertIcon = styled.div`
+  width: 24px;
+  height: 24px;
+  background-color: #EE5648;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+`;
+
+const ItemList = styled.div`
+  margin-bottom: 15px;
+`;
+
+const Item = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #f4f4f4;
+`;
+
+const ItemInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const ItemName = styled.p`
+  font-size: 14px;
+  margin: 0;
+  color: #333;
+`;
+
+const ItemDate = styled.span`
+  font-size: 12px;
+  color: #999;
+`;
+
+const AmountAndStatus = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+`;
+
+const Amount = styled.p`
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0;
+`;
+
+const Status = styled.span`
+  font-size: 12px;
+  background-color: #ffcccc;
+  color: #dc3545;
+  padding: 2px 6px;
+  border-radius: 12px;
+  margin-top: 5px;
+`;
+
+function UnpaidFee() {
+  return (
+    <Wrapper>
+      <SectionTitle>
+        <Title>내 미납 회비 2건</Title>
+        <AlertIcon>!</AlertIcon>
+      </SectionTitle>
+      <ItemList>
+        <Item>
+          <ItemInfo>
+            <ItemName>홈플러스 물품 구매비</ItemName>
+            <ItemDate>10월 2일</ItemDate>
+          </ItemInfo>
+          <AmountAndStatus>
+            <Amount>30,000원</Amount>
+            <Status>미납</Status>
+          </AmountAndStatus>
+        </Item>
+        <Item>
+          <ItemInfo>
+            <ItemName>미팅룸 대여료 10월</ItemName>
+            <ItemDate>10월 2일</ItemDate>
+          </ItemInfo>
+          <AmountAndStatus>
+            <Amount>120,000원</Amount>
+            <Status>미납</Status>
+          </AmountAndStatus>
+        </Item>
+      </ItemList>
+    </Wrapper>
+  );
+}
+
+export default UnpaidFee;

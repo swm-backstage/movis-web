@@ -16,7 +16,8 @@ export default function EntryCodeForm() {
     setEntryCode(event.target.value);
   }
 
-  const handleEntry = async () => {
+  const handleEntry = async (event) => {
+    event.preventDefault();
     if (!entryCode) {
       setError('입장코드를 입력해주세요');
       return;
@@ -44,6 +45,7 @@ export default function EntryCodeForm() {
   const removeToken = () => {
     sessionStorage.removeItem('accessToken');
     sessionStorage.removeItem('refreshToken');
+    sessionStorage.removeItem('lastLoginTime');
   }
 
   const setTokenToSesssionStorage = (accessToken, refreshToken) => {
@@ -53,6 +55,7 @@ export default function EntryCodeForm() {
     if (refreshToken) {
       sessionStorage.setItem('refreshToken', refreshToken);
     }
+    sessionStorage.setItem('lastLoginTime', new Date().getTime());
   }
 
   return (
@@ -62,7 +65,7 @@ export default function EntryCodeForm() {
       </FormTitle>
       <Subtitle>모임코드를 입력하고 모비스를 시작해 보세요!</Subtitle>
       {error && <ErrorText>{error}</ErrorText>}
-      <Form>
+      <Form onSubmit={handleEntry}>
         <Input 
           type="text"
           value={entryCode}
@@ -78,12 +81,12 @@ export default function EntryCodeForm() {
         />
         <Input
           id="phoneNumber"
-          type="phoneNumber"
+          type="tel"
           value={phoneNumber}
           onChange={(e) => setPhoneNumber(e.target.value)}
           placeholder="전화번호 입력"
         />
-        <SubmitButton onClick={handleEntry}>시작하기</SubmitButton>
+        <SubmitButton type="submit">시작하기</SubmitButton>
       </Form>
     </FormWrapper>
   )
@@ -113,7 +116,7 @@ const Subtitle = styled.p`
   margin-bottom: 20px;
 `;
 
-const Form = styled.div`
+const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;

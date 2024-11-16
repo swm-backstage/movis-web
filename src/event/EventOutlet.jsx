@@ -9,11 +9,18 @@ const Container = styled.div`
   height: 100vh;
 `;
 
+const BodyContainer = styled.div`
+  height: calc(100vh - 100px);
+  overflow-y: scroll;
+`
+
 export default function EventOutlet() {
 
   return (
     <Container>
-      <Outlet/>
+      <BodyContainer>
+        <Outlet/>
+      </BodyContainer>
       <NavigationBar/>
     </Container>
   );

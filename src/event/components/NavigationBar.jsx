@@ -3,39 +3,49 @@ import styled from 'styled-components';
 import NavItem from './NavItem';
 import { FaBookOpen, FaHome } from 'react-icons/fa';
 import { MdEventNote } from 'react-icons/md';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 
 const NavBar = styled.nav`
-  position: absolute;
+  position: fixed;
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  height: 100px;
+  max-width: 393px;
   bottom: 0;
-  padding: 1rem;
+  padding: 0.7rem 1rem;
   background-color: #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-top: 1px solid #e0e0e0;
 `;
 
 const navItems = [
-  { label: '메인페이지', 'icon': FaHome, 'path': "" },
-  { label: '이벤트 관리', 'icon': MdEventNote, 'path': "/events" },
-  { label: '전체 장부', 'icon': FaBookOpen, 'path': "/total"},
-  // { label: '설정', 'icon': IoMdSettings, 'component': <Settings/> },
+  { label: '홈', icon: FaHome, path: "" },
+  { label: '이벤트', icon: MdEventNote, path: "/events" },
+  { label: '장부', icon: FaBookOpen, path: "/total" },
 ];
 
 export default function NavigationBar() {
-  const [activeItem, setActiveItem] = useState(0);
   const { clubId } = useParams();
+  const location = useLocation();
+  const basePath = `/clubs/${clubId}`;
+
+  const activeItemIndex = navItems.findIndex(item => {
+    if (item.path === "") {
+      return location.pathname === basePath;
+    }
+    return location.pathname.startsWith(`${basePath}${item.path}`);
+  });
 
   return (
     <NavBar>
       {navItems.map((item, index) => (
         <NavItem
-          key={index} now={index}
+          key={index}
+          now={index}
           Icon={item.icon}
-          active={{item: activeItem, setItem: setActiveItem}}
-          path={"/clubs/"+clubId+navItems[index].path}
+          active={activeItemIndex === index}
+          path={`${basePath}${item.path}`}
         >
           {item.label}
         </NavItem>

@@ -8,8 +8,8 @@ import InvitePage from "./invitePage/InvitePage";
 import EntryPageForApp from "./entryPage/EntryPageForApp";
 import Mobile from "./styles/Mobile";
 import EventMain from "./event/eventMain/EventMain";
-import EventList from "./event/eventList/EventList";
-import EventTotal from "./event/eventTotal/EventTotal";
+import EventPage from "./event/eventPage/EventPage";
+import EventTotal from "./event/eventTotal/EventTotalPage";
 
 export default createBrowserRouter([
     {
@@ -30,7 +30,7 @@ export default createBrowserRouter([
                     },
                     {
                         path: "events",
-                        element: <EventList />
+                        element: <EventPage />
                     },
                     {
                         path: "total",

@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { messageToCreateEvent } from "../../constants/messageToRN";
+import { sendMessageToNative } from "../../server/reactNative";
+import { useParams } from "react-router-dom";
 
 const CreateButton = styled.button`
     height: 50px;
@@ -18,6 +20,7 @@ const CreateButton = styled.button`
 
 
 export default function EventCreateButton(){
+    const clubId = useParams().clubId;
     return (
         <CreateButton onClick={() => sendMessageToNative(messageToCreateEvent(clubId))}>
             신규 이벤트 생성

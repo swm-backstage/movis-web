@@ -5,7 +5,7 @@ import { getBillDetail } from "../../server/bills";
 
 const ModalContent = styled.div`
   padding: 20px;
-  max-height: 80vh;
+  max-height: 55vh;
   overflow-y: auto;
 `;
 

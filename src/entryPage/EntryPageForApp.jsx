@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { sendMessageToNative } from "../server/reactNative";
 
 export default function EntryPageForApp() {
     const navigate = useNavigate();
@@ -21,6 +22,7 @@ export default function EntryPageForApp() {
         };
 
         document.addEventListener('message', handleMessage);
+        sendMessageToNative(JSON.stringify({ type: "getToken" }));
         return () => {
           document.removeEventListener('message', handleMessage);
         };

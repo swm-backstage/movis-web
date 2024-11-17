@@ -25,7 +25,10 @@ function FeeTotalPage() {
 
   useEffect(()=>{
     const fetchTotalInfo = async () => {
-      const result = await getAllBillList(clubId, new Date().toISOString().split('Z')[0], "first", 999);
+      const now = new Date();
+      const kstOffset = 9 * 60 * 60 * 1000; // KST는 UTC+9
+      const kstDate = new Date(now.getTime() + kstOffset).toISOString().split('Z')[0];
+      const result = await getAllBillList(clubId, kstDate, "first", 999);
       setTotalInfo(result);
     }
     fetchTotalInfo();

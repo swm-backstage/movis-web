@@ -63,7 +63,10 @@ function BillList() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const billsData = await getBillList(eventId, new Date().toISOString().split('Z')[0]);
+        const now = new Date();
+        const kstOffset = 9 * 60 * 60 * 1000; // KST는 UTC+9
+        const kstDate = new Date(now.getTime() + kstOffset).toISOString().split('Z')[0];
+        const billsData = await getBillList(eventId, kstDate, "first", 999);
         setBills(billsData.feeElements);
       } catch (err) {
         console.error(err);

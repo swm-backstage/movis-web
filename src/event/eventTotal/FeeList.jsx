@@ -48,7 +48,7 @@ function FeeList({totalInfo}) {
     }
   }, [totalInfo]);
 
-  if (!feeElements) {
+  if (feeElements?.length === 0) {
     return <div>아직 입출 내역이 없습니다.</div>;
   }
 

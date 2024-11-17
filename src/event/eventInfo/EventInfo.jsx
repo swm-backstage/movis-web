@@ -15,7 +15,7 @@ const PageWrapper = styled.div`
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
+  padding: 10px 0;
   gap: 10px;
 `;
 

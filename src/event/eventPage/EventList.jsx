@@ -30,10 +30,17 @@ const TitleItem = styled.div`
   margin-bottom: 10px;
 `;
 
+const TitleColumn = styled.p`
+  flex: ${({ flex }) => flex || 1};
+  text-align: ${({ align }) => align || 'left'};
+  margin: 0;
+`;
+
 const EventInfo = styled.div`
   display: flex;
   flex-direction: column;
   gap: 5px;
+  flex: 2; /* 이벤트명 영역의 너비 조절 */
 `;
 
 const EventName = styled.p`
@@ -52,6 +59,17 @@ const Amount = styled.p`
   font-weight: bold;
   margin: 0;
   color: ${({ color }) => color};
+  flex: 1; /* 총 합계 영역의 너비 조절 */
+  text-align: right;
+`;
+
+const NotPaidCount = styled.p`
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+  color: ${({ color }) => color};
+  flex: 1; /* 미납 회원 수 영역의 너비 조절 */
+  text-align: right;
 `;
 
 function EventList() {
@@ -65,7 +83,7 @@ function EventList() {
       setEvents(events.eventList);
     }
     fetchData();
-  }, []);
+  }, [clubId]);
 
   const onClickEvent = (eventId) => {
     navigate(`/clubs/${clubId}/events/${eventId}`);
@@ -83,8 +101,9 @@ function EventList() {
     <ListWrapper>
 
       <TitleItem>
-        <p>이벤트명</p>
-        <p color='black'>총 합계</p>
+        <TitleColumn flex={2} align="left">이벤트명</TitleColumn>
+        <TitleColumn flex={1} align="right">총 합계</TitleColumn>
+        <TitleColumn flex={1} align="right">미납자 수</TitleColumn>
       </TitleItem>
 
       {events.map((event, index) => {
@@ -101,7 +120,12 @@ function EventList() {
                 <EventName>{event.name}</EventName>
                 <EventDate>{eventDate}</EventDate>
               </EventInfo>
-              <Amount color={event.balance == 0 ? 'black' : event.balance >= 0 ? '#007bff' : '#dc3545'}>{event?.balance?.toLocaleString('ko-KR')} 원</Amount>
+              <Amount color={event.balance === 0 ? 'black' : event.balance >= 0 ? '#007bff' : '#dc3545'}>
+                {event.balance?.toLocaleString('ko-KR')} 원
+              </Amount>
+              <NotPaidCount color={event.isNotPaidCnt > 0 ? '#dc3545' : 'black'}>
+                {event.isNotPaidCnt} 명
+              </NotPaidCount>
             </EventItem>
           )
         })}

@@ -91,9 +91,9 @@ function UnpaidFee() {
     fetchData();
   }, []);
 
-  // if (unpaidFeeList.length === 0) {
-  //   return ;
-  // }
+  if (unpaidFeeList.length === 0) {
+    return ;
+  }
 
   return (
     <Wrapper>

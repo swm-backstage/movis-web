@@ -109,9 +109,9 @@ function Details({clubId}) {
     fetchData();
   }, []);
 
-  // if (unClassifiedList.length === 0) {
-  //   return ;
-  // }
+  if (unClassifiedList.length === 0) {
+    return ;
+  }
 
   return (
     <Wrapper>

@@ -78,7 +78,11 @@ export function ModalForLog({fee, setIsModalOpen}) {
             <Label>날짜</Label>
             <Input>{feeDetail.paidAt}</Input>
             <Label>상세 내역</Label>
-            <Input>{feeDetail.explanation}</Input>
+            {
+              feeDetail.explanation === null 
+              ? <Input>상세 내역이 없습니다.</Input>
+              : <Input>{feeDetail.explanation}</Input>
+            }
           </ModalContent>
       </Modal>
   )

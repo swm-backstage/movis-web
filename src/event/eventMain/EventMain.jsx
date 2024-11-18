@@ -15,13 +15,17 @@ const Container = styled.div`
 
 function MainContainer() {
   const clubId = useParams().clubId;
+  const isChongmu = sessionStorage.getItem('isChongmu') || 'false';
   
   return (
     <Container>
         <Header clubId={clubId}/>
         <UnpaidFee clubId={clubId}/>
         <Summary clubId={clubId}/>
-        <UnClassifiedList clubId={clubId}/>
+        {
+          isChongmu === 'true' &&
+          <UnClassifiedList clubId={clubId}/>
+        }
         <RecentEvents clubId={clubId}/>
     </Container>
   );

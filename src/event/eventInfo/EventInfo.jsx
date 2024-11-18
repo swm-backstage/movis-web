@@ -20,13 +20,17 @@ const ButtonContainer = styled.div`
 `;
 
 function EventInfo() {
+  const isChongmu = sessionStorage.getItem('isChongmu') || 'false';
   return (
     <PageWrapper>
       <EventHeader />
-      <ButtonContainer>
-        <BillDepositCreateButton />
-        <BillWithDrawCreateButton />
-      </ButtonContainer>
+      {
+        isChongmu === 'true' &&
+        <ButtonContainer>
+          <BillDepositCreateButton />
+          <BillWithDrawCreateButton />
+        </ButtonContainer>
+      }
       <BillList />
     </PageWrapper>
   );

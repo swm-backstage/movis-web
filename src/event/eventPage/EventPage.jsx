@@ -20,13 +20,17 @@ const ButtonContainer = styled.div`
 `;
 
 function EventPage() {
+  const isChongmu = sessionStorage.getItem('isChongmu') || 'false';
   return (
     <PageWrapper>
       <EventHeader />
-      <ButtonContainer>
-        <EventCreateButton />
-        <EventUnClassified />
-      </ButtonContainer>
+      {
+        isChongmu === 'true' &&
+        <ButtonContainer>
+          <EventCreateButton />
+          <EventUnClassified />
+        </ButtonContainer>
+      }
       <EventList />
     </PageWrapper>
   );

@@ -83,7 +83,7 @@ function Header({clubId}) {
         </TitleSection>
         <CodeBox>
           <CodeText>입장코드</CodeText>
-          <CodeNumber>113501</CodeNumber>
+          <CodeNumber>{clubInfo.entryCode}</CodeNumber>
         </CodeBox>
       </ClubContainer>
     </HeaderWrapper>

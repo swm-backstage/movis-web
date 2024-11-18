@@ -102,18 +102,26 @@ function UnpaidFee() {
         <AlertIcon>!</AlertIcon>
       </SectionTitle>
       <ItemList>
-        {unpaidFeeList.map((event, index) => (
-          <Item key={index}>
-            <ItemInfo>
-              <ItemName>{event.name}</ItemName>
-              <ItemDate>{event.eventId}</ItemDate>
-            </ItemInfo>
-            <AmountAndStatus>
-              <Amount>{event.totalPaymentAmount}원</Amount>
-              <Status>납부 대기중</Status>
-            </AmountAndStatus>
-          </Item>
-        ))}
+        {unpaidFeeList.map((event, index) => {
+          const diffTime = Math.abs(new Date((new Date()).getTime() + 9 * 60 * 60 * 1000) - new Date(event.paymentDeadline));
+          const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+          const eventDate = diffDays === 0 ? '오늘' : `${diffDays}일 전`;
+          return (
+            <>
+              <Item key={index}>
+                <ItemInfo>
+                  <ItemName>{event.name}</ItemName>
+                  <ItemDate>{eventDate}</ItemDate>
+                </ItemInfo>
+                <AmountAndStatus>
+                  <Amount>{event.totalPaymentAmount}원</Amount>
+                  <Status>납부 대기중</Status>
+                </AmountAndStatus>
+              </Item>
+            </>
+          )
+          }
+        )}
       </ItemList>
     </Wrapper>
   );

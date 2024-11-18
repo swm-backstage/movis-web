@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { getAllBillList, getTotalInfo } from '../../server/bills';
 import { useParams } from 'react-router-dom';
 import { getExcelFile } from '../../server/excel';
+import ModalForExcel from './ModalForExcel';
 
 const SummaryWrapper = styled.div`
   padding: 20px 0px;
@@ -96,7 +96,7 @@ function FeeSummary({totalInfo}) {
 
   return (
     <SummaryWrapper>
-      { isFileDownloading && <p>파일 다운로드 중...</p> }
+      { isFileDownloading && <ModalForExcel setIsModalOpen={setIsFileDownloading}/> }
       <TotalSummary>
         <div>
           <Title>입출 총액</Title>
